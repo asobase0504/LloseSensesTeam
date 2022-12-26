@@ -154,6 +154,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="count.cpp" />
     <ClCompile Include="debug_proc.cpp" />
     <ClCompile Include="fade.cpp" />
     <ClCompile Include="game.cpp" />
@@ -193,6 +194,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
+    <ClInclude Include="count.h" />
     <ClInclude Include="debug_proc.h" />
     <ClInclude Include="fade.h" />
     <ClInclude Include="game.h" />

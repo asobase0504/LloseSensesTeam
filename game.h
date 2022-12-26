@@ -24,6 +24,7 @@ class CPlayer;
 class CWind;
 class CSeason;
 class CScore;
+class CCount;
 
 //**************************************************
 // クラス
@@ -49,6 +50,7 @@ public:
 	static CTime* GetTimer() { return m_pTimer; }
 	static CSeason* GetSeason() { return m_pSeason; }
 	static CWind* GetWind();
+	static CCount* GetCount() {return m_pCount; }
 
 	// フレームの設定
 	int GetFrame() { return m_time; }
@@ -67,6 +69,8 @@ private:
 	static CTime *m_pTimer;
 	static CWind *m_pWind;
 	static CSeason *m_pSeason;
+	static CCount *m_pCount;
+	bool m_bCreate;
 };
 
 #endif	// _GAME_H_
