@@ -37,7 +37,6 @@ static nl::json PlayerList;		//　リストの生成
 //**************************************************
 // 静的メンバ変数
 //**************************************************
-CScore *CGame::m_pScore = nullptr;
 CPlayer *CGame::m_pPlayer = nullptr;
 CPause *CGame::m_pPause = nullptr;
 CMeshField *CGame::m_pMeshField = nullptr;
@@ -71,9 +70,6 @@ HRESULT CGame::Init()
 {
 	m_time = 0;
 
-	m_pScore = CScore::Create(D3DXVECTOR3(60.0f, 50.0f, 0.0f), D3DXVECTOR3(30.0f, 60.0f, 0.0f));
-	m_pScore->SetScore(0);
-
 	m_pTimer = CTime::Create(D3DXVECTOR3(520.0f, 50.0f, 0.0f), D3DXVECTOR3(30.0f, 60.0f, 0.0f));
 	m_pTimer->Start();
 
@@ -97,7 +93,6 @@ void CGame::Uninit()
 
 	// リリースはリリースオールでやってある
 	m_pTimer = nullptr;
-	m_pScore = nullptr;
 	m_pPlayer = nullptr;
 
 	CObject::DeletedObj();
