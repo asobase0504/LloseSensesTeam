@@ -21,6 +21,7 @@ class CGimmick;
 class CGoal;
 class CTime;
 class CPlayer;
+class CSeason;
 
 //**************************************************
 // クラス
@@ -43,6 +44,7 @@ public:
 	static CGimmick* GetGimmick() { return m_pGimmick; }
 	static CGoal* GetGoal() { return m_pGoal; }
 	static CTime* GetTimer() { return m_pTimer; }
+	static CSeason* GetSeason() { return m_pSeason; }
 
 	// フレームの設定
 	int GetFrame() { return m_time; }
@@ -58,6 +60,7 @@ private:
 	static CGimmick *m_pGimmick;
 	static CGoal *m_pGoal;
 	static CTime *m_pTimer;
+	static CSeason *m_pSeason;
 };
 
 #endif	// _GAME_H_
