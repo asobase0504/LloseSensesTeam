@@ -42,6 +42,7 @@ HRESULT CTitle::Init()
 
 	m_pBG = new CBG;
 	m_pBG->Init();
+	m_pBG->SetTexture(rand() % 4);
 
 	// ƒ^ƒCƒgƒ‹
 	m_pObject2D[1] = CObject2D::Create(
