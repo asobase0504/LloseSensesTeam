@@ -14,6 +14,7 @@
 
 #include "player.h"
 #include "wind.h"
+#include "fade.h"
 
 //**************************************************
 // ƒ}ƒNƒ’è‹`
@@ -57,6 +58,12 @@ void CPlayer::Update()
 {
 	CObject2D::Update();
 	Control_();
+
+	if (m_bDeath)
+	{
+		// ‘JˆÚ
+		CFade::GetInstance()->SetFade(CManager::MODE_RESULT);
+	}
 }
 
 //--------------------------------------------------

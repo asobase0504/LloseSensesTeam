@@ -91,6 +91,11 @@ void CScore::SetScore(int nScore)
 {
 	m_nScore = nScore;
 
+	if (m_nScore < 0)
+	{
+		m_nScore = 0;
+	}
+
 	int aPosTexU[8];		// ŠeŒ…‚Ì”Žš‚ðŠi”[
 
 	{
