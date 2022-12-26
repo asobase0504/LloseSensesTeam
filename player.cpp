@@ -7,11 +7,13 @@
 // include
 //**************************************************
 #include "manager.h"
+#include "game.h"
 #include "debug_proc.h"
 #include "input_keyboard.h"
 #include "input_joypad.h"
 
 #include "player.h"
+#include "wind.h"
 
 //--------------------------------------------------
 // コンストラクタ
@@ -35,6 +37,8 @@ HRESULT CPlayer::Init()
 	CObject2D::Init();
 
 	m_bDeath = false;
+
+	SetTexture(CTexture::TEXTURE_PLAYER);
 
 	return S_OK;
 }
@@ -79,6 +83,10 @@ void CPlayer::Control_()
 	CInputKeyboard *pInputKeyoard = CManager::GetInputKeyboard();
 	//CInputJoyPad *pInputJoyPad = CManager::GetInputJoyPad();
 
+	float wind = CGame::GetWind()->GetAirFlow();
+
+	m_rotMove += wind;
+
 	if (pInputKeyoard->GetPress(DIK_A))
 	{// 左
 		m_rotMove += -0.1f;
@@ -108,7 +116,9 @@ void CPlayer::Control_()
 	SetRot(D3DXVECTOR3(0.0f, 0.0f, m_rotMove));
 
 #ifdef _DEBUG
-	CDebugProc::Print("プレイヤーの角度 z : %f", m_rotMove);
+	CDebugProc::Print("プレイヤーの角度 z : %f\n\n", m_rotMove);
+	CDebugProc::Print("風の強さ : %f\n\n", wind);
 #endif // DEBUG
+
 
 }

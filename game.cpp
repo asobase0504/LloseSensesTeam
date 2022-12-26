@@ -26,6 +26,7 @@
 #include "particle.h"
 #include "utility.h"
 #include "timer.h"
+#include "season.h"
 
 // jsonのinclude
 #include "nlohmann/json.hpp"
@@ -46,6 +47,7 @@ CGimmick *CGame::m_pGimmick = nullptr;
 CGoal *CGame::m_pGoal = nullptr;
 CTime *CGame::m_pTimer = nullptr;
 CWind *CGame::m_pWind = nullptr;
+CSeason *CGame::m_pSeason = nullptr;
 
 //**************************************************
 // マクロ定義
@@ -73,14 +75,20 @@ HRESULT CGame::Init()
 {
 	m_time = 0;
 
+	CObject2D* bg = CObject2D::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT * 0.5f, 0.0f), D3DXVECTOR3(CManager::SCREEN_WIDTH, CManager::SCREEN_HEIGHT, 0.0f));
+
 	m_pTimer = CTime::Create(D3DXVECTOR3(520.0f, 50.0f, 0.0f), D3DXVECTOR3(30.0f, 60.0f, 0.0f));
 	m_pTimer->Start();
 
+	m_pSeason = CSeason::Create(D3DXVECTOR3(620.0f, 50.0f, 0.0f), D3DXVECTOR3(30.0f, 60.0f, 0.0f));
+	m_pSeason->Start();
+
 	m_pPause = CPause::Create();
 
-	m_pPlayer = CPlayer::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_WIDTH * 0.5f, 0.0f), D3DXVECTOR3(60.0f, 60.0f, 0.0f));
+	m_pPlayer = CPlayer::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT - (320.0f * 0.15f), 0.0f), D3DXVECTOR3(820.0f, 820.0f, 0.0f));
 	m_pWind = CWind::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.8f, CManager::SCREEN_WIDTH * 0.3f, 0.0f),D3DXVECTOR3(300.0f, 300.0f,0.0f));
 
+	bg->SetTexture(CTexture::TEXTURE_TITLE_BG);
 	return S_OK;
 }
 
@@ -107,33 +115,75 @@ void CGame::Update()
 
 	CInputKeyboard *pInputKeyoard = CManager::GetInputKeyboard();
 
-	if (pInputKeyoard->GetTrigger(DIK_RETURN))
+	if (m_pPlayer->GetDeath())
 	{
 		// 遷移
 		CFade::GetInstance()->SetFade(CManager::MODE_RESULT);
 	}
 
-	{ // 風のパーティクル
+	// 風のパーティクル
+	if(m_time % 2 == 0)
+	{
+		CParticle* particle = CParticle::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(30.0f, 30.0f, 0.0f), 50);
 		switch (m_pWind->GetState())
 		{
 		case CWind::WIND_ROT::WIND_LEFT:
 		{
-			CParticle* particle = CParticle::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH, FloatRandam(0.0f, CManager::SCREEN_HEIGHT), 0.0f), D3DXVECTOR3(20.0f, 20.0f, 0.0f), 30);
-			particle->SetMovePos(D3DXVECTOR3(FloatRandam(-10.0f,-30.0f), FloatRandam(1.0f, -1.0f), 0.0f));
-			particle->SetMoveSize(D3DXVECTOR3(-0.5f, -0.5f, 0.0f));
+			particle->SetPos(D3DXVECTOR3(CManager::SCREEN_WIDTH, FloatRandam(0.0f, CManager::SCREEN_HEIGHT - 20.0f), 0.0f));
+			particle->SetMovePos(D3DXVECTOR3(FloatRandam(-10.0f,-30.0f), FloatRandam(2.0f, -1.0f), 0.0f));
+			particle->SetMoveSize(D3DXVECTOR3(-0.35f, -0.35f, 0.0f));
+			particle->SetMoveRot(D3DXVECTOR3(0.0f, 0.0f, 0.05f));
+			particle->SetTexture(CTexture::TEXTURE_HANABIRA);
 		}
 		break;
 		case CWind::WIND_ROT::WIND_RIGHT:
 		{
-			CParticle* particle = CParticle::Create(D3DXVECTOR3(0.0f, FloatRandam(0.0f, CManager::SCREEN_HEIGHT), 0.0f), D3DXVECTOR3(20.0f, 20.0f, 0.0f), 30);
-			particle->SetMovePos(D3DXVECTOR3(FloatRandam(30.0f, 10.0f), FloatRandam(1.0f, -1.0f), 0.0f));
-			particle->SetMoveSize(D3DXVECTOR3(-0.5f, -0.5f, 0.0f));
+			particle->SetPos(D3DXVECTOR3(0.0f, FloatRandam(0.0f, CManager::SCREEN_HEIGHT - 20.0f), 0.0f));
+			particle->SetMovePos(D3DXVECTOR3(FloatRandam(30.0f, 10.0f), FloatRandam(2.0f, -1.0f), 0.0f));
+			particle->SetMoveSize(D3DXVECTOR3(-0.35f, -0.35f, 0.0f));
+			particle->SetMoveRot(D3DXVECTOR3(0.0f, 0.0f, 0.05f));
 		}
 		break;
 		default:
 			break;
 		}
+
+		switch (m_pSeason->GetSeason())
+		{
+		case CSeason::SEASON_SPRING:
+			particle->SetTexture(CTexture::TEXTURE_HANABIRA);
+			break;
+		case CSeason::SEASON_SUMMER:
+			particle->SetTexture(CTexture::TEXTURE_HANABIRA);
+			particle->SetCol(D3DXCOLOR(0.0f, 1.0f, 0.0f, 1.0f));
+			break;
+		case CSeason::SEASON_FALL:
+			particle->SetTexture(CTexture::TEXTURE_HANABIRA);
+
+			if (FloatRandam(1.0f, 0.0f) < 0.55f)
+			{
+				particle->SetCol(D3DXCOLOR(1.0f, 0.25f, 0.0f, 1.0f));
+			}
+			else
+			{
+				particle->SetCol(D3DXCOLOR(1.0f, 1.0f, 0.0f, 1.0f));
+			}
+			break;
+		case CSeason::SEASON_WINTER:
+			particle->SetTexture(CTexture::TEXTURE_NONE);
+			break;
+		default:
+			break;
+		}
 	}
+}
+
+//--------------------------------------------------
+// 風の強さ
+//--------------------------------------------------
+CWind *CGame::GetWind()
+{
+	return m_pWind;
 }
 
 //--------------------------------------------------

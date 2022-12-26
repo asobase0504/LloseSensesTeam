@@ -8,6 +8,8 @@
 #include <assert.h>
 
 #include "manager.h"
+#include "debug_proc.h"
+#include "season.h"
 #include "utility.h"
 #include "wind.h"
 //--------------------------------------------------
@@ -38,6 +40,7 @@ HRESULT CWind::Init()
 	m_size = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_move = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_nFrame = 0;
+	fAirFlow = 0.0f;
 
 	return S_OK;
 }
@@ -55,6 +58,36 @@ void CWind::Uninit()
 //--------------------------------------------------
 void CWind::Update()
 {
+	switch (CSeason::GetSeason())
+	{
+	case CSeason::SEASON_SPRING:
+	{
+		fAirFlow = 0.01f;
+	}
+	break;
+
+	case CSeason::SEASON_SUMMER:
+	{
+		fAirFlow = 0.02f;
+	}
+	break;
+
+	case CSeason::SEASON_FALL:
+	{
+		fAirFlow = 0.03f;
+	}
+	break;
+
+	case CSeason::SEASON_WINTER:
+	{
+		fAirFlow = 0.05f;
+	}
+	break;
+
+	default:
+		break;
+	}
+
 	//フレームを加算
 	m_nFrame++;
 
@@ -70,17 +103,31 @@ void CWind::Update()
 	if (m_nRandom <= 1.5f)
 	{//ランダムの値が1.5f以下なら
 		m_state = WIND_LEFT;
+		fAirFlow *= -1.0f;
 		m_pos = D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.8f, CManager::SCREEN_WIDTH * 0.3f, 0.0f);
 	}
 	else
 	{//1.5f以上なら
 		m_state = WIND_RIGHT;
+		fAirFlow *= -1.0f;
+
 		m_pos = D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.2f, CManager::SCREEN_WIDTH * 0.3f, 0.0f);
 	}
+
+	//switch (m_state)
+	//{
+	//case CWind::WIND_LEFT:
+	//	break;
+	//case CWind::WIND_RIGHT:
+	//	break;
+	//default:
+	//	break;
+	//}
 
 	//posの値を更新
 	SetPos(m_pos);
 	CObject2D::Update();
+
 }
 
 //--------------------------------------------------
@@ -97,6 +144,15 @@ void CWind::Draw()
 CWind::WIND_ROT CWind::GetState()
 {
 	return m_state;
+}
+
+float CWind::GetAirFlow()
+{
+	if (m_state == CWind::WIND_LEFT)
+	{
+		return fAirFlow;
+	}
+	return fAirFlow * -1.0f;
 }
 
 //--------------------------------------------------
