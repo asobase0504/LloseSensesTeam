@@ -28,6 +28,9 @@
     <Filter Include="ソース ファイル\data">
       <UniqueIdentifier>{8cad74e5-4e15-4de2-a723-916cec564ca7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\particle">
+      <UniqueIdentifier>{073b26e7-ff3d-4831-828f-9610232f01dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="precompile.cpp">
@@ -123,14 +126,14 @@
     <ClCompile Include="wind.cpp">
       <Filter>ソース ファイル\object</Filter>
     </ClCompile>
-    <ClCompile Include="particle.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="player.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="timer.cpp">
       <Filter>ソース ファイル\system</Filter>
+    </ClCompile>
+    <ClCompile Include="particle.cpp">
+      <Filter>ソース ファイル\particle</Filter>
     </ClCompile>
     <ClCompile Include="season.cpp">
       <Filter>ソース ファイル\system</Filter>
@@ -230,14 +233,14 @@
     <ClInclude Include="wind.h">
       <Filter>ソース ファイル\object</Filter>
     </ClInclude>
-    <ClInclude Include="particle.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="player.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="timer.h">
       <Filter>ソース ファイル\system</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="particle.h">
+      <Filter>ソース ファイル\particle</Filter>
     </ClInclude>
     <ClInclude Include="season.h">
       <Filter>ソース ファイル\system</Filter>

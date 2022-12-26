@@ -30,9 +30,19 @@ void CParticle::Update()
 	if (m_life < 0)
 	{
 		Release();
+		return;
 	}
 
-	MovePos(m_move);
+	D3DXVECTOR3 size = GetSize();
+	if (size.x < 0.0f || size.y < 0.0f)
+	{
+		Release();
+		return;
+	}
+
+	MovePos(m_posMove);
+	SetRot(GetRot() + m_rotMove);
+	SetSize(GetSize() + m_sizeMove);
 }
 
 void CParticle::Draw()

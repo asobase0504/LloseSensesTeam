@@ -34,14 +34,16 @@ public:
 
 	static CParticle *Create(D3DXVECTOR3 pos, D3DXVECTOR3 size, int life,int nPriority = PRIORITY_OBJECT);
 
-	void SetMove(const D3DXVECTOR3& inMove) { m_move = inMove; }
+	void SetMovePos(const D3DXVECTOR3& inMove) { m_posMove = inMove; }
+	void SetMoveRot(const D3DXVECTOR3& inMove) { m_rotMove = inMove; }
+	void SetMoveSize(const D3DXVECTOR3& inMove) { m_sizeMove = inMove; }
 
 	void SetLife(const int inLife) { m_life = inLife; }
 private:
-	//std::unordered_map<int, CObject2D*> m_effect;
-	//D3DXVECTOR3 m_popSize;
 	int m_life;
-	D3DXVECTOR3 m_move;
+	D3DXVECTOR3 m_posMove;
+	D3DXVECTOR3 m_rotMove;
+	D3DXVECTOR3 m_sizeMove;
 };
 
 #endif	// _OBJECT2D_H_
