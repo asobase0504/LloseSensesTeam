@@ -21,6 +21,7 @@
 
 #include "meshfield.h"
 #include "player.h"
+#include "wind.h"
 
 // json‚Ìinclude
 #include "nlohmann/json.hpp"
@@ -74,6 +75,7 @@ HRESULT CGame::Init()
 	m_pPause = CPause::Create();
 
 	m_pPlayer = CPlayer::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_WIDTH * 0.5f, 0.0f), D3DXVECTOR3(20.0f, 60.0f, 0.0f));
+	CWind::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.8f, CManager::SCREEN_WIDTH * 0.3f, 0.0f), D3DXVECTOR3(0.0f,0.0f,0.0f), D3DXVECTOR3(300.0f, 300.0f,0.0f));
 
 	return S_OK;
 }

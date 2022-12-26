@@ -30,39 +30,58 @@ HRESULT CWind::Init()
 {
 	CObject2D::Init();
 
-	SetTexture(CTexture::TEXTURE_GROUND);
-
 	m_pos = D3DXVECTOR3(0.0f,0.0f,0.0f);
 	m_size = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_move = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_nFrame = 0;
 
 	return S_OK;
 }
 
+//--------------------------------------------------
+// I—¹
+//--------------------------------------------------
 void CWind::Uninit()
 {
 	CObject2D::Uninit();
 }
 
+//--------------------------------------------------
+// XV
+//--------------------------------------------------
 void CWind::Update()
 {
 	CObject2D::Update();
 }
 
+//--------------------------------------------------
+// •`‰æ
+//--------------------------------------------------
 void CWind::Draw()
 {
 	CObject2D::Draw();
 }
 
-void CWind::SetWind(D3DXVECTOR3 rot, float air)
+//--------------------------------------------------
+// •—‚ÌÝ’è
+//--------------------------------------------------
+void CWind::SetWind(D3DXVECTOR3 rot, D3DXVECTOR3 air)
 {
+}
+
+//--------------------------------------------------
+// Œü‚«‚ÌÝ’è
+//--------------------------------------------------
+void CWind::SetRot(D3DXVECTOR3 rot)
+{
+	m_rot = rot;
 }
 
 //--------------------------------------------------
 // ¶¬
 //--------------------------------------------------
-CWind * CWind::Create(const D3DXVECTOR3 pos, const D3DXVECTOR3 size)
+CWind * CWind::Create(const D3DXVECTOR3 pos, const D3DXVECTOR3 rot,const D3DXVECTOR3 size)
 {
 	CWind *pWind;
 	pWind = new CWind;
@@ -71,6 +90,7 @@ CWind * CWind::Create(const D3DXVECTOR3 pos, const D3DXVECTOR3 size)
 	{
 		pWind->Init();
 		pWind->SetPos(pos);
+		pWind->SetRot(rot);
 		pWind->SetSize(size);
 	}
 	else
