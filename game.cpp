@@ -48,6 +48,7 @@ CGoal *CGame::m_pGoal = nullptr;
 CTime *CGame::m_pTimer = nullptr;
 CWind *CGame::m_pWind = nullptr;
 CSeason *CGame::m_pSeason = nullptr;
+CScore *CGame::m_pScore = nullptr;
 
 //**************************************************
 // マクロ定義
@@ -77,6 +78,9 @@ HRESULT CGame::Init()
 
 	CObject2D* bg = CObject2D::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT * 0.5f, 0.0f), D3DXVECTOR3(CManager::SCREEN_WIDTH, CManager::SCREEN_HEIGHT, 0.0f));
 
+	m_pScore = CScore::Create(D3DXVECTOR3(60.0f, 50.0f, 0.0f), D3DXVECTOR3(60.0f, 120.0f, 0.0f));
+	m_pScore->SetScore(0);
+
 	m_pTimer = CTime::Create(D3DXVECTOR3(520.0f, 50.0f, 0.0f), D3DXVECTOR3(30.0f, 60.0f, 0.0f));
 	m_pTimer->Start();
 
@@ -101,6 +105,7 @@ void CGame::Uninit()
 
 	// リリースはリリースオールでやってある
 	m_pTimer = nullptr;
+	m_pScore = nullptr;
 	m_pPlayer = nullptr;
 
 	CObject::DeletedObj();
@@ -119,10 +124,19 @@ void CGame::Update()
 	{
 		// 遷移
 		CFade::GetInstance()->SetFade(CManager::MODE_RESULT);
+		return;
+	}
+
+	if (m_time % 10 == 0)
+	{
+		D3DXVECTOR3 rot = m_pPlayer->GetRot();
+		int score = 0;
+		score += (int)(100.0f * (1.0f - fabs(rot.z)));
+		m_pScore->AddScore(score);
 	}
 
 	// 風のパーティクル
-	if(m_time % 2 == 0)
+	if(m_time % 1 == 0)
 	{
 		CParticle* particle = CParticle::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(30.0f, 30.0f, 0.0f), 50);
 		switch (m_pWind->GetState())
@@ -151,7 +165,11 @@ void CGame::Update()
 		switch (m_pSeason->GetSeason())
 		{
 		case CSeason::SEASON_SPRING:
-			particle->SetTexture(CTexture::TEXTURE_HANABIRA);
+		{
+			float size = FloatRandam(60.0f, 20.0f);
+			particle->SetSize(D3DXVECTOR3(size, size, 0.0f));
+			particle->SetTexture(CTexture::TEXTURE_SNOW);
+		}
 			break;
 		case CSeason::SEASON_SUMMER:
 			particle->SetTexture(CTexture::TEXTURE_HANABIRA);
@@ -170,7 +188,7 @@ void CGame::Update()
 			}
 			break;
 		case CSeason::SEASON_WINTER:
-			particle->SetTexture(CTexture::TEXTURE_NONE);
+			particle->SetTexture(CTexture::TEXTURE_SNOW);
 			break;
 		default:
 			break;

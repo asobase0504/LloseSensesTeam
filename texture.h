@@ -29,6 +29,7 @@ public: /* 定義 */
 		TEXTURE_NUMBER,				// タイム
 		TEXTURE_WIND,
 		TEXTURE_HANABIRA,
+		TEXTURE_SNOW,
 		TEXTURE_PAUSE_RESTART,		// 初めから
 		TEXTURE_PAUSE_TITLE,		// タイトルへ
 		TEXTURE_PAUSE_CLOSE,		// 閉じる

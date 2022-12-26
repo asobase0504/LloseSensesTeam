@@ -57,6 +57,10 @@ private:
 	float fAirFlow;			//風量
 
 	int m_nFrame;			//フレーム数
+	int m_nLeftTime;		//左のタイム
+	int m_nRightTime;		//右のタイム
+	int m_nTime;			//風向きが変わるまでのタイム
+	bool m_bSwitch;			//風向きが変わるタイミング
 	float m_nRandom;		//ランダム用変数
 };
 
