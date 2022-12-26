@@ -57,6 +57,7 @@ HRESULT CBG::Init()
 
 void CBG::Uninit()
 {
+	CManager::SetNowSeason(select);
 	CObject::DeletedObj();
 }
 

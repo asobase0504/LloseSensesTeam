@@ -73,6 +73,7 @@ private:
 	static CBG *m_pBG;
 	static CCount *m_pCount;
 	bool m_bCreate;
+	int m_nTime;
 };
 
 #endif	// _GAME_H_

@@ -16,6 +16,8 @@
 #include "score.h"
 #include "sound.h"
 
+#include "bg.h"
+
 // jsonのinclude
 #include "nlohmann/json.hpp"
 #include <fstream>
@@ -44,28 +46,33 @@ CRanking::~CRanking()
 //--------------------------------------------------
 HRESULT CRanking::Init()
 {
-	//CManager::GetSound()->Play(CSound::LABEL_BGM_RANKING);
+	CManager::GetSound()->Play(CSound::LABEL_BGM_MAIN);
+
+	CBG* bg = new CBG;
+	bg->Init();
+	bg->SetTexture(CManager::GetNowSeason());
 
 	// ランキングの背景
 	m_pRankingBg = CObject2D::Create(
 		D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT * 0.5f, 0.0f),
-		D3DXVECTOR3((float)CManager::SCREEN_WIDTH, (float)CManager::SCREEN_HEIGHT, 0.0f),
+		D3DXVECTOR3((float)CManager::SCREEN_WIDTH * 0.75f, (float)CManager::SCREEN_HEIGHT * 0.85f, 0.0f),
 		PRIORITY_BG);
 	m_pRankingBg->SetTexture(CTexture::TEXTURE_NONE);
+	m_pRankingBg->SetCol(D3DXCOLOR(1.0f,1.0f,1.0f,0.25f));
 
 	// 順位
 	m_pRanking = CObject2D::Create(
-		D3DXVECTOR3(300.0f, 380.0f, 0.0f),
+		D3DXVECTOR3(300.0f, 360.0f, 0.0f),
 		D3DXVECTOR3(120.0f, 500.0f, 0.0f),
 		PRIORITY_BG);
-	m_pRanking->SetTexture(CTexture::TEXTURE_NONE);
+	m_pRanking->SetTexture(CTexture::TEXTURE_RANKING);
 	m_pRanking->SetCol(D3DXCOLOR(0.0f, 0.0f, 0.0f, 1.0f));
 
 	for (int nCntRank = 0; nCntRank < MAX_RANK; nCntRank++)
 	{
 		m_aRankingData[nCntRank] = 0;
 		// スコア
-		m_pScore[nCntRank] = CScore::Create(D3DXVECTOR3(500.0f, 180.0f + nCntRank * 100.0f, 0.0f), D3DXVECTOR3(60.0f, 80.0f, 0.0f));
+		m_pScore[nCntRank] = CScore::Create(D3DXVECTOR3(500.0f, 160.0f + nCntRank * 100.0f, 0.0f), D3DXVECTOR3(60.0f, 80.0f, 0.0f));
 		m_pScore[nCntRank]->SetScore(m_aRankingData[nCntRank]);
 	}
 

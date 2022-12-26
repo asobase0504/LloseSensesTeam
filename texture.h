@@ -27,6 +27,7 @@ public: /* 定義 */
 		TEXTURE_START,				// START
 		TEXTURE_RESULT,				// RESULT
 		TEXTURE_NUMBER,				// タイム
+		TEXTURE_RANKING,				// タイム
 		TEXTURE_WIND,
 		TEXTURE_HANABIRA,
 		TEXTURE_SNOW,
@@ -42,6 +43,7 @@ public: /* 定義 */
 		TEXTURE_BG1,				// ポーズ
 		TEXTURE_BG2,				// ポーズ
 		TEXTURE_BG3,				// ポーズ
+		TEXTURE_SCORE_TEXT,			//	スコア
 		TEXTURE_MAX,
 		TEXTURE_NONE,				// 使用しない
 	};

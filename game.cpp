@@ -85,7 +85,20 @@ HRESULT CGame::Init()
 	m_pBG = new CBG;
 	m_pBG->Init();
 
-	m_pScore = CScore::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f - 200.0f, 100.0f, 0.0f), D3DXVECTOR3(60.0f, 120.0f, 0.0f));
+	{
+		CObject2D* scoreBG = CObject2D::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, 110.0f, 0.0f), D3DXVECTOR3(550.0f, 170.0f, 0.0f));
+		scoreBG->SetCol(D3DXCOLOR(0.0f, 0.45f, 0.0f, 0.45f));
+	}
+	{
+		CObject2D* scoreBG = CObject2D::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, 130.0f, 0.0f), D3DXVECTOR3(540.0f, 120.0f, 0.0f));
+		scoreBG->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.45f));
+	}
+	{
+		CObject2D* scoreText = CObject2D::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, 50.0f, 0.0f), D3DXVECTOR3(85.0f, 32.0f, 0.0f));
+		scoreText->SetTexture(CTexture::TEXTURE_SCORE_TEXT);
+	}
+
+	m_pScore = CScore::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f - 210.0f, 130.0f, 0.0f), D3DXVECTOR3(60.0f, 120.0f, 0.0f));
 	m_pScore->SetScore(0);
 
 	m_pPause = CPause::Create();
@@ -101,6 +114,8 @@ HRESULT CGame::Init()
 void CGame::Uninit()
 {
 	CManager::SetNowScore(m_pScore->GetScore());
+
+	m_pPlayer = nullptr;
 
 	CObject::DeletedObj();
 }
@@ -132,7 +147,7 @@ void CGame::Update()
 			D3DXVECTOR3 rot = m_pPlayer->GetRot();
 
 			int score = 0;
-			score += (int)(10.0f * (1.0f - fabs(rot.z)));
+			score += (int)(100.0f * (1.0f - fabs(rot.z)));
 
 			m_pScore->AddScore(score);
 		}
@@ -200,6 +215,19 @@ void CGame::Update()
 			break;
 			default:
 				break;
+			}
+		}
+	}
+
+	if (m_pPlayer != nullptr)
+	{
+		if (m_pPlayer->GetDeath())
+		{
+			m_nTime++;
+			if (m_nTime > 60)
+			{
+				// ‘JˆÚ
+				CFade::GetInstance()->SetFade(CManager::MODE_RANKING);
 			}
 		}
 	}

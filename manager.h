@@ -83,6 +83,9 @@ public:
 	static void SetNowScore(int score) { m_nowScore = score; }
 	static int GetNowScore() { return m_nowScore; }
 
+	static void SetNowSeason(int score) { m_nowSeason = score; }
+	static int GetNowSeason() { return m_nowSeason; }
+
 	static MODE GetGameMode() { return m_mode; }
 
 	static void SetMode(MODE mode);
@@ -105,6 +108,8 @@ private:
 	// åªç›ÇÃÉXÉRÉA
 	static int m_nowScore;
 
+	// åªç›ÇÃãGêﬂ
+	static int m_nowSeason;
 };
 
 #endif	// _MANAGER_H_
