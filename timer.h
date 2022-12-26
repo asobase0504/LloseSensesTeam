@@ -39,7 +39,7 @@ public:
 
 	void SetTime(int nScore);
 	void AddTime() { SetTime((int)(timeGetTime() - m_nTime)); }
-	int GetTime() { return m_nTime; }
+	int GetTime() { return (int)(timeGetTime() - m_nTime); }
 
 	static CTime *Create(D3DXVECTOR3 pos, D3DXVECTOR3 size);
 
