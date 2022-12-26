@@ -27,7 +27,8 @@ const char* CTexture::s_FileName[] =
 	"data/TEXTURE/TUTORIAL.png",	// TUTORIAL
 	"data/TEXTURE/START.png",		// START
 	"data/TEXTURE/RESULT.png",		// RESULT
-	"data/TEXTURE/number000.png",		// タイム
+	"data/TEXTURE/number001.png",		// タイム
+	"data/TEXTURE/ranking.png",		// タイム
 	"data/TEXTURE/風量000.png",		// 風
 	"data/TEXTURE/hanabira.png",	// 花びら
 	"data/TEXTURE/snow1.png",	// 雪

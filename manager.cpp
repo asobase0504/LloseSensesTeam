@@ -50,6 +50,7 @@ CSound *CManager::m_pSound = nullptr;
 CManager::MODE CManager::m_mode = MODE_TITLE;
 
 int CManager::m_nowScore = 0;
+int CManager::m_nowSeason = 0;
 
 //--------------------------------------------------
 // コンストラクタ

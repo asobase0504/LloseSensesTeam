@@ -62,7 +62,7 @@ HRESULT CTitle::Init()
 	// チュートリアル
 	m_pMenu[1] = CObject2D::Create(
 		D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT - 150.0f, 0.0f),
-		D3DXVECTOR3(300.0f * 2.0f, 50.0f * 2.0f, 0.0f),
+		D3DXVECTOR3(200.0f * 2.0f, 50.0f * 2.0f, 0.0f),
 		PRIORITY_BG);
 	m_pMenu[1]->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.5f));
 	m_pMenu[1]->SetTexture(CTexture::TEXTURE_TUTORIAL);
