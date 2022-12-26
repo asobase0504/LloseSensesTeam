@@ -46,6 +46,7 @@ public:
 		TYPE_BOSS,
 		TYPE_ITEM,
 		TYPE_LOCKON_UI,
+		TYPE_WIND,
 		TYPE_MAX
 	};
 
