@@ -101,11 +101,19 @@ void CPlayer::Control_()
 
 	m_rotMove += wind;
 
-	if (pInputKeyoard->GetTrigger(DIK_A) || pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_LEFT_SHOULDER, 0))
+	if (pInputKeyoard->GetTrigger(DIK_A) || 
+		pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_UP, 0)
+	|| pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_DOWN, 0)
+	|| pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_LEFT, 0)
+	|| pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_RIGHT, 0))
 	{// ¶
 		m_rotMove += -ROT_MOVE;
 	}
-	if (pInputKeyoard->GetTrigger(DIK_D) || pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_RIGHT_SHOULDER, 0))
+	if (pInputKeyoard->GetTrigger(DIK_D) ||
+		pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_A, 0)
+		|| pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_B, 0)
+		|| pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_Y, 0)
+		|| pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_X, 0))
 	{// ‰E
 		m_rotMove += ROT_MOVE;
 	}
