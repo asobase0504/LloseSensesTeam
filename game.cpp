@@ -20,6 +20,7 @@
 #include "ranking.h"
 
 #include "meshfield.h"
+#include "player.h"
 
 // jsonのinclude
 #include "nlohmann/json.hpp"
@@ -34,7 +35,7 @@ static nl::json PlayerList;		//　リストの生成
 // 静的メンバ変数
 //**************************************************
 CScore *CGame::m_pScore = nullptr;
-CPlayer3D *CGame::m_pPlayer3D = nullptr;
+CPlayer *CGame::m_pPlayer = nullptr;
 CPause *CGame::m_pPause = nullptr;
 CMeshField *CGame::m_pMeshField = nullptr;
 CGimmick *CGame::m_pGimmick = nullptr;
@@ -72,8 +73,7 @@ HRESULT CGame::Init()
 
 	m_pPause = CPause::Create();
 
-	m_pMeshField = CMeshField::Create();
-	m_pMeshField->SetPos(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+	m_pPlayer = CPlayer::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_WIDTH * 0.5f, 0.0f), D3DXVECTOR3(20.0f, 60.0f, 0.0f));
 
 	return S_OK;
 }
@@ -91,7 +91,7 @@ void CGame::Uninit()
 	// リリースはリリースオールでやってある
 	m_pTimer = nullptr;
 	m_pScore = nullptr;
-	m_pPlayer3D = nullptr;
+	m_pPlayer = nullptr;
 
 	CObject::DeletedObj();
 }

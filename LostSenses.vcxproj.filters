@@ -123,6 +123,9 @@
     <ClCompile Include="wind.cpp">
       <Filter>ソース ファイル\object</Filter>
     </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>ソース ファイル\object\game_system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precompile.h">
@@ -217,6 +220,9 @@
     </ClInclude>
     <ClInclude Include="wind.h">
       <Filter>ソース ファイル\object</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>ソース ファイル\object\game_system</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
