@@ -85,7 +85,7 @@ HRESULT CGame::Init()
 	m_pBG = new CBG;
 	m_pBG->Init();
 
-	m_pScore = CScore::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.3f, 50.0f, 0.0f), D3DXVECTOR3(60.0f, 120.0f, 0.0f));
+	m_pScore = CScore::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f - 200.0f, 100.0f, 0.0f), D3DXVECTOR3(60.0f, 120.0f, 0.0f));
 	m_pScore->SetScore(0);
 
 	m_pPause = CPause::Create();

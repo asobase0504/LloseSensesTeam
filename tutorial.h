@@ -20,6 +20,7 @@ class CPlayer;
 class CWind;
 class CSeason;
 class CBG;
+class CTime;
 
 //**************************************************
 // ƒNƒ‰ƒX
@@ -40,6 +41,7 @@ public:
 	static CPause* GetPause() { return m_pPause; }
 	static CSeason* GetSeason() { return m_pSeason; }
 	static CWind* GetWind() { return m_pWind; }
+	static CTime* GetTimer() { return m_pTimer; }
 
 	void LoadPlayer(const char *pFdata);
 
@@ -53,6 +55,7 @@ private:
 	static CWind *m_pWind;
 	static CSeason *m_pSeason;
 	static CBG *m_pBG;
+	static CTime *m_pTimer;
 };
 
 #endif	// _TUTORIAL_H_
