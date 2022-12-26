@@ -14,9 +14,9 @@ CBG::~CBG()
 HRESULT CBG::Init()
 {
 
-	m_bg = CObject2D::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT * 0.5f, 0.0f), D3DXVECTOR3(CManager::SCREEN_WIDTH, CManager::SCREEN_HEIGHT, 0.0f));
-	m_tree[0] = CObject2D::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.15f, CManager::SCREEN_HEIGHT * 0.5f, 0.0f), D3DXVECTOR3(350.0f, 600.0f, 0.0f));
-	m_tree[1] = CObject2D::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.85f, CManager::SCREEN_HEIGHT * 0.5f, 0.0f), D3DXVECTOR3(350.0f, 600.0f, 0.0f));
+	m_bg = CObject2D::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT * 0.5f, 0.0f), D3DXVECTOR3(CManager::SCREEN_WIDTH, CManager::SCREEN_HEIGHT, 0.0f), PRIORITY_BG);
+	m_tree[0] = CObject2D::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.15f, CManager::SCREEN_HEIGHT * 0.5f, 0.0f), D3DXVECTOR3(350.0f, 600.0f, 0.0f), PRIORITY_BG);
+	m_tree[1] = CObject2D::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.85f, CManager::SCREEN_HEIGHT * 0.5f, 0.0f), D3DXVECTOR3(350.0f, 600.0f, 0.0f), PRIORITY_BG);
 
 	m_bg->SetTexture(CTexture::TEXTURE_BG0);
 	m_tree[0]->SetTexture(CTexture::TEXTURE_TREE0);
