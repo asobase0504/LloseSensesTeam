@@ -49,13 +49,6 @@ HRESULT CSeason::Init(D3DXVECTOR3 pos, D3DXVECTOR3 size)
 	m_nTime = 0;
 	m_isStart = false;
 
-	for (int nCnt = 0; nCnt < MAX_TIME; nCnt++)
-	{
-		m_pNumber[nCnt] = CNumber::Create(D3DXVECTOR3(size.x * nCnt + pos.x, pos.y, 0.0f), size);
-		m_pNumber[nCnt]->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
-		m_pNumber[nCnt]->SetTexture(CTexture::TEXTURE_NUMBER);
-	}
-
 	return S_OK;
 }
 
@@ -64,16 +57,6 @@ HRESULT CSeason::Init(D3DXVECTOR3 pos, D3DXVECTOR3 size)
 //--------------------------------------------------
 void CSeason::Uninit()
 {
-	for (int nCnt = 0; nCnt < MAX_TIME; nCnt++)
-	{
-		if (m_pNumber[nCnt] == nullptr)
-		{
-			continue;
-		}
-
-		m_pNumber[nCnt]->Uninit();
-	}
-
 	CObject::DeletedObj();
 }
 
@@ -90,10 +73,6 @@ void CSeason::Update()
 //--------------------------------------------------
 void CSeason::SetPos(D3DXVECTOR3 pos, D3DXVECTOR3 size)
 {
-	for (int nCnt = 0; nCnt < MAX_TIME; nCnt++)
-	{
-		m_pNumber[nCnt]->SetPos(D3DXVECTOR3(size.x * nCnt + pos.x, pos.y, 0.0f));
-	}
 }
 
 //--------------------------------------------------
@@ -152,12 +131,6 @@ void CSeason::SetTime(int nTime)
 		{
 			m_nTime2 = 1;
 		}
-	}
-
-	// テクスチャ座標の設定
-	for (int nCnt = 0; nCnt < MAX_TIME; nCnt++)
-	{
-		m_pNumber[nCnt]->AnimTexture(aPosTexU[nCnt], 10);
 	}
 }
 
