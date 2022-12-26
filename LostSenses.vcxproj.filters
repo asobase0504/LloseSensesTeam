@@ -123,11 +123,14 @@
     <ClCompile Include="wind.cpp">
       <Filter>ソース ファイル\object</Filter>
     </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>ソース ファイル\object\game_system</Filter>
-    </ClCompile>
     <ClCompile Include="particle.cpp">
-      <Filter>ソース ファイル\object\game_system</Filter>
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="timer.cpp">
+      <Filter>ソース ファイル\system</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -224,11 +227,14 @@
     <ClInclude Include="wind.h">
       <Filter>ソース ファイル\object</Filter>
     </ClInclude>
-    <ClInclude Include="player.h">
-      <Filter>ソース ファイル\object\game_system</Filter>
-    </ClInclude>
     <ClInclude Include="particle.h">
-      <Filter>ソース ファイル\object\game_system</Filter>
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>ソース ファイル\system</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
