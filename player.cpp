@@ -6,6 +6,10 @@
 //**************************************************
 // include
 //**************************************************
+#include "manager.h"
+#include "input_keyboard.h"
+#include "input_joypad.h"
+
 #include "player.h"
 
 //--------------------------------------------------
@@ -38,6 +42,7 @@ HRESULT CPlayer::Init()
 void CPlayer::Update()
 {
 	CObject2D::Update();
+	Control_();
 }
 
 //--------------------------------------------------
@@ -60,4 +65,28 @@ CPlayer *CPlayer::Create(D3DXVECTOR3 pos, D3DXVECTOR3 size)
 	}
 
 	return pPlayer;
+}
+
+//--------------------------------------------------
+// 生成
+//--------------------------------------------------
+void CPlayer::Control_()
+{
+	// インプット
+	CInputKeyboard *pInputKeyoard = CManager::GetInputKeyboard();
+	//CInputJoyPad *pInputJoyPad = CManager::GetInputJoyPad();
+
+	D3DXVECTOR3 rot = GetRot();
+
+	if (pInputKeyoard->GetPress(DIK_A))
+	{// 左
+		rot.z += -0.1f;
+	}
+	if (pInputKeyoard->GetPress(DIK_D))
+	{// 右
+		rot.z += 0.1f;
+	}
+
+	// 角度を設定
+	SetRot(rot);
 }

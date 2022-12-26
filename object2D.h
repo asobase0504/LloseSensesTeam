@@ -54,12 +54,14 @@ public:
 	static CObject2D *Create(D3DXVECTOR3 pos, D3DXVECTOR3 size,int nPriority = PRIORITY_OBJECT);
 
 	void SetPos(const D3DXVECTOR3& pos) { m_posOrigin = pos; }
+	void SetRot(const D3DXVECTOR3& rot) { m_rot = rot; }
 	void SetSize(const D3DXVECTOR3& size) { m_fSize = size; }
 	void SetCol(const D3DXCOLOR& col);
 
 	void MovePos(const D3DXVECTOR3& move) { m_posOrigin += move; }
 
 	const D3DXVECTOR3& GetPos() const { return m_posOrigin; }
+	const D3DXVECTOR3& GetRot() const { return m_rot; }
 	const D3DXVECTOR3& GetSize() const { return m_fSize; }
 
 private:
@@ -69,6 +71,8 @@ private:
 	D3DXVECTOR3 m_fSize;
 	// ポリゴンの色
 	D3DXCOLOR m_col;
+	// 角度
+	D3DXVECTOR3 m_rot;
 	// 頂点バッファへのポインタ
 	LPDIRECT3DVERTEXBUFFER9 m_pVtxBuff;
 	// テクスチャの列挙型
