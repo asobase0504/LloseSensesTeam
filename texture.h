@@ -27,6 +27,7 @@ public: /* 定義 */
 		TEXTURE_START,				// START
 		TEXTURE_RESULT,				// RESULT
 		TEXTURE_NUMBER,				// タイム
+		TEXTURE_WIND,
 		TEXTURE_MAX,
 		TEXTURE_NONE,				// 使用しない
 	};
