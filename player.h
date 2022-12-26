@@ -27,6 +27,9 @@ public:
 private:
 	void Control_();
 
+private:
+	float m_rotMove;	// í‚É‘«‚³‚ê‚éŠp“x
+
 };
 
 #endif	// _PLAYER_H_

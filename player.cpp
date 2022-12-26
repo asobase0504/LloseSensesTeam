@@ -7,6 +7,7 @@
 // include
 //**************************************************
 #include "manager.h"
+#include "debug_proc.h"
 #include "input_keyboard.h"
 #include "input_joypad.h"
 
@@ -76,17 +77,29 @@ void CPlayer::Control_()
 	CInputKeyboard *pInputKeyoard = CManager::GetInputKeyboard();
 	//CInputJoyPad *pInputJoyPad = CManager::GetInputJoyPad();
 
-	D3DXVECTOR3 rot = GetRot();
-
 	if (pInputKeyoard->GetPress(DIK_A))
 	{// 左
-		rot.z += -0.1f;
+		m_rotMove += -0.1f;
 	}
 	if (pInputKeyoard->GetPress(DIK_D))
 	{// 右
-		rot.z += 0.1f;
+		m_rotMove += 0.1f;
+	}
+
+	if (m_rotMove >= 0.0f)
+	{
+		m_rotMove += 0.02f;
+	}
+	if (m_rotMove < 0.0f)
+	{
+		m_rotMove += -0.02f;
 	}
 
 	// 角度を設定
-	SetRot(rot);
+	SetRot(D3DXVECTOR3(0.0f, 0.0f, m_rotMove));
+
+#ifdef _DEBUG
+	CDebugProc::Print("プレイヤーの角度 z : %f", m_rotMove);
+#endif // DEBUG
+
 }
