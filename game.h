@@ -46,7 +46,7 @@ public:
 	static CGoal* GetGoal() { return m_pGoal; }
 	static CTime* GetTimer() { return m_pTimer; }
 	static CSeason* GetSeason() { return m_pSeason; }
-	static CWind* GetWind() { return m_pWind; }
+	static CWind* GetWind();
 
 	// ƒtƒŒ[ƒ€‚Ìİ’è
 	int GetFrame() { return m_time; }

@@ -8,6 +8,7 @@
 #include <assert.h>
 
 #include "manager.h"
+#include "debug_proc.h"
 #include "season.h"
 #include "utility.h"
 #include "wind.h"
@@ -102,17 +103,31 @@ void CWind::Update()
 	if (m_nRandom <= 1.5f)
 	{//ランダムの値が1.5f以下なら
 		m_state = WIND_LEFT;
+		fAirFlow *= -1.0f;
 		m_pos = D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.8f, CManager::SCREEN_WIDTH * 0.3f, 0.0f);
 	}
 	else
 	{//1.5f以上なら
 		m_state = WIND_RIGHT;
+		fAirFlow *= -1.0f;
+
 		m_pos = D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.2f, CManager::SCREEN_WIDTH * 0.3f, 0.0f);
 	}
+
+	//switch (m_state)
+	//{
+	//case CWind::WIND_LEFT:
+	//	break;
+	//case CWind::WIND_RIGHT:
+	//	break;
+	//default:
+	//	break;
+	//}
 
 	//posの値を更新
 	SetPos(m_pos);
 	CObject2D::Update();
+
 }
 
 //--------------------------------------------------
@@ -133,7 +148,11 @@ CWind::WIND_ROT CWind::GetState()
 
 float CWind::GetAirFlow()
 {
-	return fAirFlow;
+	if (m_state == CWind::WIND_LEFT)
+	{
+		return fAirFlow;
+	}
+	return fAirFlow * -1.0f;
 }
 
 //--------------------------------------------------
