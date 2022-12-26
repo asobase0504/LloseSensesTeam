@@ -21,7 +21,7 @@
 #define SPRING_SPEED	(0.01f)
 #define SUMMER_SPEED	(0.02f)
 #define FALL_SPEED		(0.025f)
-#define WINTER_SPEED	(0.030f)
+#define WINTER_SPEED	(0.028f)
 //**************************************************
 // ç\ë¢ëÃíËã`
 //**************************************************
