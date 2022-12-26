@@ -78,8 +78,11 @@ void CWind::Update()
 	break;
 
 	case CSeason::SEASON_WINTER:
+	{
 		fAirFlow = 0.05f;
-		break;
+	}
+	break;
+
 	default:
 		break;
 	}
