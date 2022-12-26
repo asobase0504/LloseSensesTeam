@@ -25,6 +25,8 @@ public:
 	static CPlayer *Create(D3DXVECTOR3 pos, D3DXVECTOR3 size);
 
 private:
+	void Control_();
+
 };
 
 #endif	// _PLAYER_H_

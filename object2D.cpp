@@ -41,6 +41,8 @@ CObject2D::CObject2D(int nPriority) : CObject(nPriority)
 	m_pVtxBuff = nullptr;
 	// 元の座標
 	m_posOrigin = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	// 元の座標
+	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	// 四角形の大きさ変更
 	m_fSize = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	// 色
@@ -144,8 +146,8 @@ void CObject2D::Update()
 	D3DXMatrixIdentity(&mtx);
 
 	// ヨー、ピッチ、ロールを指定してマトリックスを作成
-	//D3DXMatrixRotationYawPitchRoll(&mtx, 0.0f, 0.0f, ((D3DX_PI * 2.0f) / 100.0f) * m_fTimer);		// 回転
-	D3DXMatrixRotationYawPitchRoll(&mtx, 0.0f, 0.0f, 0.0f);
+	D3DXMatrixRotationYawPitchRoll(&mtx, 0.0f, 0.0f, m_rot.z);		// 回転
+	//D3DXMatrixRotationYawPitchRoll(&mtx, 0.0f, 0.0f, 0.0f);
 
 	// 頂点バッファをロックし、頂点情報へのポインタを取得
 	m_pVtxBuff->Lock(0, 0, (void**)&pVtx, 0);

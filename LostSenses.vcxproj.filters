@@ -126,6 +126,9 @@
     <ClCompile Include="player.cpp">
       <Filter>ソース ファイル\object\game_system</Filter>
     </ClCompile>
+    <ClCompile Include="particle.cpp">
+      <Filter>ソース ファイル\object\game_system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precompile.h">
@@ -222,6 +225,9 @@
       <Filter>ソース ファイル\object</Filter>
     </ClInclude>
     <ClInclude Include="player.h">
+      <Filter>ソース ファイル\object\game_system</Filter>
+    </ClInclude>
+    <ClInclude Include="particle.h">
       <Filter>ソース ファイル\object\game_system</Filter>
     </ClInclude>
   </ItemGroup>

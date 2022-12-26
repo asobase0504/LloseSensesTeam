@@ -30,5 +30,6 @@
 D3DXVECTOR3 GetWorldToScreenPos(const D3DXVECTOR3& pos);
 float Vec2Cross(D3DXVECTOR3* v1, D3DXVECTOR3* v2);
 float D3DXVec2Dot(D3DXVECTOR3* v1, D3DXVECTOR3* v2);
+float FloatRandam(float fMax, float fMin);
 
 #endif	// _UTILITY_H_
