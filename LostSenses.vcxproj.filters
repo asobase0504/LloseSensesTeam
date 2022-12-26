@@ -28,9 +28,6 @@
     <Filter Include="ソース ファイル\data">
       <UniqueIdentifier>{8cad74e5-4e15-4de2-a723-916cec564ca7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\object\game_system">
-      <UniqueIdentifier>{1f14d3c5-e7fa-4762-9e55-5023d0344241}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="precompile.cpp">
@@ -123,6 +120,9 @@
     <ClCompile Include="score.cpp">
       <Filter>ソース ファイル\system</Filter>
     </ClCompile>
+    <ClCompile Include="wind.cpp">
+      <Filter>ソース ファイル\object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precompile.h">
@@ -214,6 +214,9 @@
     </ClInclude>
     <ClInclude Include="score.h">
       <Filter>ソース ファイル\system</Filter>
+    </ClInclude>
+    <ClInclude Include="wind.h">
+      <Filter>ソース ファイル\object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
