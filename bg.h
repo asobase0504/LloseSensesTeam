@@ -1,60 +1,40 @@
 //==================================================
-// title.h
+// object2D.h
 // Author: Buriya Kota
 //==================================================
-#ifndef _TITLE_H_
-#define _TITLE_H_
+#ifndef _BG_H_
+#define _BG_H_
 
 //**************************************************
 // インクルード
 //**************************************************
-#include "game_mode.h"
-#include "texture.h"
+#include "main.h"
+#include "object.h"
 
 //**************************************************
 // 前方前言　実態はNG　ポインタだけならOK
 //**************************************************
 class CObject2D;
-class CBG;
 
 //**************************************************
 // クラス
 //**************************************************
-class CTitle : public CGameMode
+class CBG : public CObject
 {
 public:
-	static const int BG_TITLE = 2;
-	static const int MENU = 2;
-
-public:
-	enum SELECT_GAMEMODE
-	{
-		SELECT_GAMEMODE_START = 0,
-		SELECT_GAMEMODE_TUTRIAL,
-		SELECT_GAMEMODE_MAX
-	};
-
-	CTitle();
-	~CTitle() override;
+	explicit CBG(int nPriority = PRIORITY_OBJECT);
+	~CBG() override;
 
 	HRESULT Init() override;
 	void Uninit() override;
 	void Update() override;
-	void Draw() override {}
+	void Draw() override;
 
-	static CTitle *Create();
-
+	void SetTexture(int i);
 private:
-	// オブジェクト2Dの箱
-	CObject2D *m_pObject2D[BG_TITLE];
-	CObject2D *m_pMenu[MENU];
-	// 位置
-	D3DXVECTOR3 m_pos;
-	// 大きさ
-	D3DXVECTOR3 m_size;
-	// 選択しているモードのカウント
-	int m_nSelect;
-	CBG *m_pBG;
+	CObject2D* m_bg;
+	CObject2D* m_tree[2];
+
 };
 
-#endif	// _TITLE_H_
+#endif	// _OBJECT2D_H_

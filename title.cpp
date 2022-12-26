@@ -15,6 +15,7 @@
 #include "title.h"
 #include "object2D.h"
 #include "fade.h"
+#include "bg.h"
 #include "sound.h"
 
 //--------------------------------------------------
@@ -39,12 +40,9 @@ HRESULT CTitle::Init()
 	// サウンド
 	CManager::GetSound()->Play(CSound::LABEL_BGM_MAIN);
 
-	// BG
-	m_pObject2D[0] = CObject2D::Create(
-		D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT * 0.5f, 0.0f),
-		D3DXVECTOR3((float)CManager::SCREEN_WIDTH, (float)CManager::SCREEN_HEIGHT, 0.0f),
-		PRIORITY_BG);
-	m_pObject2D[0]->SetTexture(CTexture::TEXTURE_TITLE_BG);
+	m_pBG = new CBG;
+	m_pBG->Init();
+	m_pBG->SetTexture(rand() % 4);
 
 	// タイトル
 	m_pObject2D[1] = CObject2D::Create(
@@ -79,8 +77,6 @@ HRESULT CTitle::Init()
 //--------------------------------------------------
 void CTitle::Uninit()
 {
-	CManager::GetSound()->Stop();
-
 	CObject::DeletedObj();
 }
 
