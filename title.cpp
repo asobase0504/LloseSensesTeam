@@ -37,7 +37,7 @@ CTitle::~CTitle()
 HRESULT CTitle::Init()
 {
 	// ƒTƒEƒ“ƒh
-	//CManager::GetSound()->Play(CSound::LABEL_BGM_TITLE);
+	CManager::GetSound()->Play(CSound::LABEL_BGM_MAIN);
 
 	// BG
 	m_pObject2D[0] = CObject2D::Create(

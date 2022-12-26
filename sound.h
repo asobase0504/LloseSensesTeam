@@ -23,8 +23,11 @@ public:
 	enum ELabel
 	{
 		LABEL_NONE = -1,
+		LABEL_BGM_MAIN,			// ƒƒCƒ“BGM
+		LABEL_BGM_GAME,			// ƒQ[ƒ€BGM
 		LABEL_SE_ENTER,			// Œˆ’è‰¹
 		LABEL_SE_SELECT,		// ‘I‘ð
+		LABEL_SE_WIND,			// •—‚Ì‰¹
 		LABEL_MAX,
 	};
 
