@@ -21,8 +21,6 @@ class CGimmick;
 class CGoal;
 class CTime;
 class CPlayer;
-
-
 class CWind;
 class CSeason;
 
@@ -48,6 +46,7 @@ public:
 	static CGoal* GetGoal() { return m_pGoal; }
 	static CTime* GetTimer() { return m_pTimer; }
 	static CSeason* GetSeason() { return m_pSeason; }
+	static CWind* GetWind() { return m_pWind; }
 
 	// ƒtƒŒ[ƒ€‚Ìİ’è
 	int GetFrame() { return m_time; }
