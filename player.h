@@ -22,6 +22,8 @@ public:
 	HRESULT Init();
 	void Update();
 
+	bool GetDeath() { return m_bDeath; }
+
 	static CPlayer *Create(D3DXVECTOR3 pos, D3DXVECTOR3 size);
 
 private:
@@ -29,7 +31,7 @@ private:
 
 private:
 	float m_rotMove;	// èÌÇ…ë´Ç≥ÇÍÇÈäpìx
-
+	bool m_bDeath;
 };
 
 #endif	// _PLAYER_H_
