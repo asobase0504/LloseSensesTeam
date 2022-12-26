@@ -15,6 +15,7 @@
 #include "player.h"
 #include "wind.h"
 #include "fade.h"
+#include "tutorial.h"
 
 //**************************************************
 // マクロ定義
@@ -102,9 +103,26 @@ void CPlayer::Control_()
 	CInputKeyboard *pInputKeyoard = CManager::GetInputKeyboard();
 	CInputJoyPad *pInputJoyPad = CManager::GetInputJoyPad();
 
-	float wind = CGame::GetWind()->GetAirFlow();
+	if (CManager::GetGameMode() == CManager::MODE_TUTORIAL)
+	{
+		if (CTutorial::GetWind() != nullptr)
+		{
+			float wind = CTutorial::GetWind()->GetAirFlow();
 
-	m_rotMove += wind;
+
+			m_rotMove += wind;
+		}
+	}
+	else
+	{
+		if (CGame::GetWind() != nullptr)
+		{
+			float wind = CGame::GetWind()->GetAirFlow();
+
+
+			m_rotMove += wind;
+		}
+	}
 
 	if (!m_bDeath)
 	{
@@ -157,7 +175,7 @@ void CPlayer::Control_()
 
 #ifdef _DEBUG
 	CDebugProc::Print("プレイヤーの角度 z : %f\n\n", m_rotMove);
-	CDebugProc::Print("風の強さ : %f\n\n", wind);
+	//CDebugProc::Print("風の強さ : %f\n\n", wind);
 #endif // DEBUG
 
 
