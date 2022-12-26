@@ -29,6 +29,10 @@ public: /* 定義 */
 		TEXTURE_NUMBER,				// タイム
 		TEXTURE_WIND,
 		TEXTURE_HANABIRA,
+		TEXTURE_PAUSE_RESTART,		// 初めから
+		TEXTURE_PAUSE_TITLE,		// タイトルへ
+		TEXTURE_PAUSE_CLOSE,		// 閉じる
+		TEXTURE_PAUSE,				// ポーズ
 		TEXTURE_MAX,
 		TEXTURE_NONE,				// 使用しない
 	};
