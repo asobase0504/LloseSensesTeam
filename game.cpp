@@ -23,6 +23,8 @@
 #include "player.h"
 #include "wind.h"
 
+#include "timer.h"
+
 // jsonのinclude
 #include "nlohmann/json.hpp"
 #include <fstream>
@@ -35,13 +37,12 @@ static nl::json PlayerList;		//　リストの生成
 //**************************************************
 // 静的メンバ変数
 //**************************************************
-CScore *CGame::m_pScore = nullptr;
 CPlayer *CGame::m_pPlayer = nullptr;
 CPause *CGame::m_pPause = nullptr;
 CMeshField *CGame::m_pMeshField = nullptr;
 CGimmick *CGame::m_pGimmick = nullptr;
 CGoal *CGame::m_pGoal = nullptr;
-CTimer *CGame::m_pTimer = nullptr;
+CTime *CGame::m_pTimer = nullptr;
 
 //**************************************************
 // マクロ定義
@@ -69,13 +70,13 @@ HRESULT CGame::Init()
 {
 	m_time = 0;
 
-	m_pScore = CScore::Create(D3DXVECTOR3(60.0f, 50.0f, 0.0f), D3DXVECTOR3(30.0f, 60.0f, 0.0f));
-	m_pScore->SetScore(0);
+	m_pTimer = CTime::Create(D3DXVECTOR3(520.0f, 50.0f, 0.0f), D3DXVECTOR3(30.0f, 60.0f, 0.0f));
+	m_pTimer->Start();
 
 	m_pPause = CPause::Create();
 
 	m_pPlayer = CPlayer::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_WIDTH * 0.5f, 0.0f), D3DXVECTOR3(60.0f, 60.0f, 0.0f));
-	CWind::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.8f, CManager::SCREEN_WIDTH * 0.3f, 0.0f), D3DXVECTOR3(0.0f,0.0f,0.0f), D3DXVECTOR3(300.0f, 300.0f,0.0f));
+	CWind::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.8f, CManager::SCREEN_WIDTH * 0.3f, 0.0f),D3DXVECTOR3(300.0f, 300.0f,0.0f));
 
 	return S_OK;
 }
@@ -92,7 +93,6 @@ void CGame::Uninit()
 
 	// リリースはリリースオールでやってある
 	m_pTimer = nullptr;
-	m_pScore = nullptr;
 	m_pPlayer = nullptr;
 
 	CObject::DeletedObj();

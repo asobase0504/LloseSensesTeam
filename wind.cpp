@@ -7,6 +7,8 @@
 //**************************************************
 #include <assert.h>
 
+#include "manager.h"
+#include "utility.h"
 #include "wind.h"
 //--------------------------------------------------
 // コンストラクタ
@@ -29,10 +31,11 @@ CWind::~CWind()
 HRESULT CWind::Init()
 {
 	CObject2D::Init();
+	SetTexture(CTexture::TEXTURE_WIND);
 
 	m_pos = D3DXVECTOR3(0.0f,0.0f,0.0f);
+	m_rot = D3DXVECTOR3(0.0f,0.0f,0.0f);
 	m_size = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_move = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_nFrame = 0;
 
@@ -52,6 +55,31 @@ void CWind::Uninit()
 //--------------------------------------------------
 void CWind::Update()
 {
+	//フレームを加算
+	m_nFrame++;
+
+	if (m_nFrame > 60)
+	{//フレーム数が45を超えたら
+		//ランダムの値を変える
+		m_nRandom = FloatRandam(3.0f, 0.0f);
+
+		//フレームを0に戻す
+		m_nFrame = 0;
+	}
+
+	if (m_nRandom <= 1.5f)
+	{//ランダムの値が1.5f以下なら
+		m_state = WIND_LEFT;
+		m_pos = D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.8f, CManager::SCREEN_WIDTH * 0.3f, 0.0f);
+	}
+	else
+	{//1.5f以上なら
+		m_state = WIND_RIGHT;
+		m_pos = D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.2f, CManager::SCREEN_WIDTH * 0.3f, 0.0f);
+	}
+
+	//posの値を更新
+	SetPos(m_pos);
 	CObject2D::Update();
 }
 
@@ -64,24 +92,17 @@ void CWind::Draw()
 }
 
 //--------------------------------------------------
-// 風の設定
+// 現在の向きを取得
 //--------------------------------------------------
-void CWind::SetWind(D3DXVECTOR3 rot, D3DXVECTOR3 air)
+CWind::WIND_ROT CWind::GetState()
 {
-}
-
-//--------------------------------------------------
-// 向きの設定
-//--------------------------------------------------
-void CWind::SetRot(D3DXVECTOR3 rot)
-{
-	m_rot = rot;
+	return m_state;
 }
 
 //--------------------------------------------------
 // 生成
 //--------------------------------------------------
-CWind * CWind::Create(const D3DXVECTOR3 pos, const D3DXVECTOR3 rot,const D3DXVECTOR3 size)
+CWind * CWind::Create(const D3DXVECTOR3 pos, const D3DXVECTOR3 size)
 {
 	CWind *pWind;
 	pWind = new CWind;
@@ -90,7 +111,6 @@ CWind * CWind::Create(const D3DXVECTOR3 pos, const D3DXVECTOR3 rot,const D3DXVEC
 	{
 		pWind->Init();
 		pWind->SetPos(pos);
-		pWind->SetRot(rot);
 		pWind->SetSize(size);
 	}
 	else

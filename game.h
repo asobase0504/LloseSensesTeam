@@ -13,14 +13,13 @@
 //**************************************************
 // 前方前言　実態はNG　ポインタだけならOK
 //**************************************************
-class CScore;
 class CLockOnUIManager;
 class CPlayer3D;
 class CPause;
 class CMeshField;
 class CGimmick;
 class CGoal;
-class CTimer;
+class CTime;
 class CPlayer;
 
 //**************************************************
@@ -39,12 +38,11 @@ public:
 
 	// プレイヤーの情報の取得
 	static CPlayer* GetPlayer() { return m_pPlayer; }
-	static CScore* GetScore() { return m_pScore; }
 	static CPause* GetPause() { return m_pPause; }
 	static CMeshField* GetMeshField() { return m_pMeshField; }
 	static CGimmick* GetGimmick() { return m_pGimmick; }
 	static CGoal* GetGoal() { return m_pGoal; }
-	static CTimer* GetTimer() { return m_pTimer; }
+	static CTime* GetTimer() { return m_pTimer; }
 
 	// フレームの設定
 	int GetFrame() { return m_time; }
@@ -55,12 +53,11 @@ private:
 	int m_time;		// ゲーム開始からの時間
 	
 	static CPlayer *m_pPlayer;
-	static CScore *m_pScore;
 	static CPause *m_pPause;
 	static CMeshField *m_pMeshField;
 	static CGimmick *m_pGimmick;
 	static CGoal *m_pGoal;
-	static CTimer *m_pTimer;
+	static CTime *m_pTimer;
 };
 
 #endif	// _GAME_H_
