@@ -43,6 +43,8 @@ public: /* 定義 */
 		TEXTURE_BG1,				// ポーズ
 		TEXTURE_BG2,				// ポーズ
 		TEXTURE_BG3,				// ポーズ
+		TEXTURE_TUTORIAL_KEY,		// 操作説明
+		TEXTURE_TUTORIAL_TUTORIAL,	// ルール説明
 		TEXTURE_MAX,
 		TEXTURE_NONE,				// 使用しない
 	};
