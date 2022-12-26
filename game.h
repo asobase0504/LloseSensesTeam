@@ -24,6 +24,7 @@ class CPlayer;
 class CWind;
 class CSeason;
 class CScore;
+class CBG;
 class CCount;
 
 //**************************************************
@@ -69,6 +70,7 @@ private:
 	static CTime *m_pTimer;
 	static CWind *m_pWind;
 	static CSeason *m_pSeason;
+	static CBG *m_pBG;
 	static CCount *m_pCount;
 	bool m_bCreate;
 };
