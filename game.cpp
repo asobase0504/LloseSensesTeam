@@ -23,6 +23,8 @@
 #include "player.h"
 #include "wind.h"
 
+#include "timer.h"
+
 // json‚Ìinclude
 #include "nlohmann/json.hpp"
 #include <fstream>
@@ -41,7 +43,7 @@ CPause *CGame::m_pPause = nullptr;
 CMeshField *CGame::m_pMeshField = nullptr;
 CGimmick *CGame::m_pGimmick = nullptr;
 CGoal *CGame::m_pGoal = nullptr;
-CTimer *CGame::m_pTimer = nullptr;
+CTime *CGame::m_pTimer = nullptr;
 
 //**************************************************
 // ƒ}ƒNƒ’è‹`
@@ -71,6 +73,9 @@ HRESULT CGame::Init()
 
 	m_pScore = CScore::Create(D3DXVECTOR3(60.0f, 50.0f, 0.0f), D3DXVECTOR3(30.0f, 60.0f, 0.0f));
 	m_pScore->SetScore(0);
+
+	m_pTimer = CTime::Create(D3DXVECTOR3(520.0f, 50.0f, 0.0f), D3DXVECTOR3(30.0f, 60.0f, 0.0f));
+	m_pTimer->Start();
 
 	m_pPause = CPause::Create();
 

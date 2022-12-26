@@ -20,7 +20,7 @@ class CPause;
 class CMeshField;
 class CGimmick;
 class CGoal;
-class CTimer;
+class CTime;
 class CPlayer;
 
 //**************************************************
@@ -44,7 +44,7 @@ public:
 	static CMeshField* GetMeshField() { return m_pMeshField; }
 	static CGimmick* GetGimmick() { return m_pGimmick; }
 	static CGoal* GetGoal() { return m_pGoal; }
-	static CTimer* GetTimer() { return m_pTimer; }
+	static CTime* GetTimer() { return m_pTimer; }
 
 	// ÉtÉåÅ[ÉÄÇÃê›íË
 	int GetFrame() { return m_time; }
@@ -60,7 +60,7 @@ private:
 	static CMeshField *m_pMeshField;
 	static CGimmick *m_pGimmick;
 	static CGoal *m_pGoal;
-	static CTimer *m_pTimer;
+	static CTime *m_pTimer;
 };
 
 #endif	// _GAME_H_
