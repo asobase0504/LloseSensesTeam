@@ -29,8 +29,11 @@ public:
 	HRESULT Init() override;
 	HRESULT Init(D3DXVECTOR3 pos, D3DXVECTOR3 size);
 	void Uninit() override;
-	void Update() override {}
+	void Update() override;
 	void Draw() override {}
+
+	void SetLight(bool isLight) { m_isLight = isLight; }
+	bool IsLight() { return m_isLight; }
 
 	void SetPos(D3DXVECTOR3 pos, D3DXVECTOR3 size);
 
@@ -45,6 +48,12 @@ private:
 	CNumber *m_pNumber[MAX_SCORE];
 	// スコアの値
 	int m_nScore;
+	// ランキングに乗ったかどうか
+	bool m_isLight;
+	// カウント
+	int m_nTime;
+	// 色
+	D3DXCOLOR m_col;
 };
 
 #endif	// _SCORE_H_
