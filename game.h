@@ -23,6 +23,7 @@ class CTime;
 class CPlayer;
 class CWind;
 class CSeason;
+class CScore;
 
 //**************************************************
 // クラス
@@ -41,6 +42,7 @@ public:
 	// プレイヤーの情報の取得
 	static CPlayer* GetPlayer() { return m_pPlayer; }
 	static CPause* GetPause() { return m_pPause; }
+	static CScore* GetScore() { return m_pScore; }
 	static CMeshField* GetMeshField() { return m_pMeshField; }
 	static CGimmick* GetGimmick() { return m_pGimmick; }
 	static CGoal* GetGoal() { return m_pGoal; }
@@ -61,6 +63,7 @@ private:
 	static CMeshField *m_pMeshField;
 	static CGimmick *m_pGimmick;
 	static CGoal *m_pGoal;
+	static CScore *m_pScore;
 	static CTime *m_pTimer;
 	static CWind *m_pWind;
 	static CSeason *m_pSeason;

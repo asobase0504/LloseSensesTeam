@@ -52,7 +52,7 @@ HRESULT CPause::Init()
 		D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, 100.0f, 0.0f),
 		D3DXVECTOR3(700.0f, 150.0f, 0.0f),
 		PRIORITY_UI);
-	m_pObject2D[1]->SetTexture(CTexture::TEXTURE_NONE);
+	m_pObject2D[1]->SetTexture(CTexture::TEXTURE_PAUSE);
 	m_pObject2D[1]->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.0f));
 
 	// リスタート
@@ -60,7 +60,7 @@ HRESULT CPause::Init()
 		D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT - 450.0f, 0.0f),
 		D3DXVECTOR3(200.0f * 2.0f, 50.0f * 2.0f, 0.0f),
 		PRIORITY_UI);
-	m_pMenu[0]->SetTexture(CTexture::TEXTURE_NONE);
+	m_pMenu[0]->SetTexture(CTexture::TEXTURE_PAUSE_RESTART);
 	m_pMenu[0]->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.0f));
 
 	// タイトルに戻る
@@ -68,7 +68,7 @@ HRESULT CPause::Init()
 		D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT - 350.0f, 0.0f),
 		D3DXVECTOR3(300.0f * 2.0f, 50.0f * 2.0f, 0.0f),
 		PRIORITY_UI);
-	m_pMenu[1]->SetTexture(CTexture::TEXTURE_NONE);
+	m_pMenu[1]->SetTexture(CTexture::TEXTURE_PAUSE_TITLE);
 	m_pMenu[1]->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.0f));
 
 	// 閉じる
@@ -76,7 +76,7 @@ HRESULT CPause::Init()
 		D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT - 250.0f, 0.0f),
 		D3DXVECTOR3(300.0f * 2.0f, 50.0f * 2.0f, 0.0f),
 		PRIORITY_UI);
-	m_pMenu[2]->SetTexture(CTexture::TEXTURE_NONE);
+	m_pMenu[2]->SetTexture(CTexture::TEXTURE_PAUSE_CLOSE);
 	m_pMenu[2]->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.0f));
 
 	return S_OK;

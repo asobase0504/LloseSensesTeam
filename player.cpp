@@ -14,6 +14,14 @@
 
 #include "player.h"
 #include "wind.h"
+#include "fade.h"
+
+//**************************************************
+// マクロ定義
+//**************************************************
+#define ROT_MOVE		(0.05f)
+#define ROT_DEATH		(1.57f)
+#define ROT_GRAVITY		(0.005f)
 
 //--------------------------------------------------
 // コンストラクタ
@@ -50,6 +58,12 @@ void CPlayer::Update()
 {
 	CObject2D::Update();
 	Control_();
+
+	if (m_bDeath)
+	{
+		// 遷移
+		CFade::GetInstance()->SetFade(CManager::MODE_RESULT);
+	}
 }
 
 //--------------------------------------------------
@@ -81,33 +95,33 @@ void CPlayer::Control_()
 {
 	// インプット
 	CInputKeyboard *pInputKeyoard = CManager::GetInputKeyboard();
-	//CInputJoyPad *pInputJoyPad = CManager::GetInputJoyPad();
+	CInputJoyPad *pInputJoyPad = CManager::GetInputJoyPad();
 
 	float wind = CGame::GetWind()->GetAirFlow();
 
 	m_rotMove += wind;
 
-	if (pInputKeyoard->GetPress(DIK_A))
+	if (pInputKeyoard->GetPress(DIK_A) || pInputJoyPad->GetJoypadPress(pInputJoyPad->JOYKEY_LEFT_SHOULDER, 0))
 	{// 左
-		m_rotMove += -0.1f;
+		m_rotMove += -ROT_MOVE;
 	}
-	if (pInputKeyoard->GetPress(DIK_D))
+	if (pInputKeyoard->GetPress(DIK_D) || pInputJoyPad->GetJoypadPress(pInputJoyPad->JOYKEY_RIGHT_SHOULDER, 0))
 	{// 右
-		m_rotMove += 0.1f;
+		m_rotMove += ROT_MOVE;
 	}
 
 	// 傾いてる方向によって角度を足す
 	if (m_rotMove > 0.0f)
 	{
-		m_rotMove += 0.02f;
+		m_rotMove += ROT_GRAVITY;
 	}
 	if (m_rotMove < 0.0f)
 	{
-		m_rotMove += -0.02f;
+		m_rotMove += -ROT_GRAVITY;
 	}
 
 	// 死亡フラグ
-	if (m_rotMove > 1.57f || m_rotMove < -1.57f)
+	if (m_rotMove > ROT_DEATH || m_rotMove < -ROT_DEATH)
 	{
 		m_bDeath = true;
 	}

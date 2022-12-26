@@ -7,9 +7,11 @@
 //**************************************************
 #include <assert.h>
 
-#include "manager.h"
 #include "debug_proc.h"
+#include "game.h"
+#include "manager.h"
 #include "season.h"
+#include "timer.h"
 #include "utility.h"
 #include "wind.h"
 //--------------------------------------------------
@@ -40,7 +42,11 @@ HRESULT CWind::Init()
 	m_size = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_move = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_nFrame = 0;
+	m_nLeftTime = 0;
+	m_nRightTime = 0;
+	m_nTime = 0;
 	fAirFlow = 0.0f;
+	m_bSwitch = false;
 
 	return S_OK;
 }
@@ -58,29 +64,48 @@ void CWind::Uninit()
 //--------------------------------------------------
 void CWind::Update()
 {
+	CTime *pTime = CGame::GetTimer();
+	int Timer = pTime->GetTime() / 100;
+
+	int m_nTimeHarf = m_nTime / 0.5f;
+
 	switch (CSeason::GetSeason())
 	{
 	case CSeason::SEASON_SPRING:
 	{
-		fAirFlow = 0.01f;
+		if (m_nTime <= m_nTimeHarf)
+		{
+			fAirFlow = 0.01f + Timer * 0.000003f;
+		}
+		else
+		{
+			fAirFlow = 0.01f - Timer * 0.000003f;
+		}
 	}
 	break;
 
 	case CSeason::SEASON_SUMMER:
 	{
-		fAirFlow = 0.02f;
+		if (m_nTime <= m_nTimeHarf)
+		{
+			fAirFlow = 0.02f + Timer * 0.000003f;
+		}
+		else
+		{
+			fAirFlow = 0.02f - Timer * 0.000003f;
+		}
 	}
 	break;
 
 	case CSeason::SEASON_FALL:
 	{
-		fAirFlow = 0.03f;
+		fAirFlow = 0.03f + Timer * 0.000003f;
 	}
 	break;
 
 	case CSeason::SEASON_WINTER:
 	{
-		fAirFlow = 0.05f;
+		fAirFlow = 0.05f + Timer * 0.000005f;
 	}
 	break;
 
@@ -103,31 +128,42 @@ void CWind::Update()
 	if (m_nRandom <= 1.5f)
 	{//ランダムの値が1.5f以下なら
 		m_state = WIND_LEFT;
+		m_bSwitch = false;
 		fAirFlow *= -1.0f;
 		m_pos = D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.8f, CManager::SCREEN_WIDTH * 0.3f, 0.0f);
 	}
 	else
 	{//1.5f以上なら
 		m_state = WIND_RIGHT;
+		m_bSwitch = true;
 		fAirFlow *= -1.0f;
 
 		m_pos = D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.2f, CManager::SCREEN_WIDTH * 0.3f, 0.0f);
 	}
 
-	//switch (m_state)
-	//{
-	//case CWind::WIND_LEFT:
-	//	break;
-	//case CWind::WIND_RIGHT:
-	//	break;
-	//default:
-	//	break;
-	//}
+	switch (m_state)
+	{
+	case CWind::WIND_LEFT:
+		m_nLeftTime++;
+		if (!m_bSwitch)
+		{
+			m_nTime = m_nLeftTime - m_nRightTime;
+		}
+		break;
+	case CWind::WIND_RIGHT:
+		m_nRightTime++;
+		if (m_bSwitch)
+		{
+			m_nTime = m_nLeftTime - m_nRightTime;
+		}
+		break;
+	default:
+		break;
+	}
 
 	//posの値を更新
 	SetPos(m_pos);
 	CObject2D::Update();
-
 }
 
 //--------------------------------------------------

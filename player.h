@@ -13,7 +13,7 @@
 //**************************************************
 // ƒNƒ‰ƒX
 //**************************************************
-class CPlayer : CObject2D
+class CPlayer : public CObject2D
 {
 public:
 	CPlayer();
