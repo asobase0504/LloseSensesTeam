@@ -43,6 +43,7 @@ public: /* 定義 */
 		TEXTURE_BG1,				// ポーズ
 		TEXTURE_BG2,				// ポーズ
 		TEXTURE_BG3,				// ポーズ
+		TEXTURE_SCORE_TEXT,			//	スコア
 		TEXTURE_MAX,
 		TEXTURE_NONE,				// 使用しない
 	};
