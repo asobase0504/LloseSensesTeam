@@ -44,6 +44,7 @@ HRESULT CScore::Init()
 HRESULT CScore::Init(D3DXVECTOR3 pos, D3DXVECTOR3 size)
 {
 	m_nScore = 0;
+	m_nTime = 0;
 
 	for (int nCnt = 0; nCnt < MAX_SCORE; nCnt++)
 	{
@@ -71,6 +72,34 @@ void CScore::Uninit()
 	}
 
 	CObject::DeletedObj();
+}
+
+//--------------------------------------------------
+// XV
+//--------------------------------------------------
+void CScore::Update()
+{
+	//ENTER‚Ì“_–Å
+	m_nTime++;
+	m_nTime %= 61;
+
+	if (m_nTime > 31)
+	{
+		m_col = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+	}
+	else
+	{
+		m_col = D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.5f);
+	}
+
+	if (m_isLight)
+	{
+		for (int nCnt = 0; nCnt < MAX_SCORE; nCnt++)
+		{
+			m_pNumber[nCnt]->SetCol(m_col);
+		}
+	}
+
 }
 
 //--------------------------------------------------

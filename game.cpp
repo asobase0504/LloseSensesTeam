@@ -104,7 +104,7 @@ void CGame::Uninit()
 {
 	CManager::GetSound()->Stop();
 
-	// リリースはリリースオールでやってある
+	CManager::SetNowScore(m_pScore->GetScore());
 
 	CObject::DeletedObj();
 }
