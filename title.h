@@ -55,6 +55,8 @@ private:
 	// 選択しているモードのカウント
 	int m_nSelect;
 	CBG *m_pBG;
+
+	int randam;
 };
 
 #endif	// _TITLE_H_

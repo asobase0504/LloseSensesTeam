@@ -79,7 +79,7 @@ HRESULT CManager::Init(const HINSTANCE hInstance, const HWND hWnd)
 	m_pRenderer = new CRenderer;
 
 	// 初期化処理
-	if (FAILED(m_pRenderer->Init(hWnd, TRUE)))		// ここFALSEにするとフルスクリーンになるTRUEはウィンドウモード
+	if (FAILED(m_pRenderer->Init(hWnd, false)))		// ここFALSEにするとフルスクリーンになるTRUEはウィンドウモード
 	{//初期化が失敗した場合
 		return -1;
 	}

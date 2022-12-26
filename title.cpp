@@ -17,6 +17,10 @@
 #include "fade.h"
 #include "bg.h"
 #include "sound.h"
+#include "particle.h"
+#include "utility.h"
+
+#define SUKINASUUZI (3)
 
 //--------------------------------------------------
 // コンストラクタ
@@ -42,7 +46,9 @@ HRESULT CTitle::Init()
 
 	m_pBG = new CBG;
 	m_pBG->Init();
-	m_pBG->SetTexture(rand() % 4);
+
+	randam = SUKINASUUZI;
+	m_pBG->SetTexture(randam);
 
 	// タイトル
 	m_pObject2D[1] = CObject2D::Create(
@@ -61,7 +67,7 @@ HRESULT CTitle::Init()
 
 	// チュートリアル
 	m_pMenu[1] = CObject2D::Create(
-		D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT - 150.0f, 0.0f),
+		D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT - 125.0f, 0.0f),
 		D3DXVECTOR3(200.0f * 2.25f, 50.0f * 2.25f, 0.0f),
 		PRIORITY_BG);
 	m_pMenu[1]->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.5f));
@@ -139,6 +145,52 @@ void CTitle::Update()
 		default:
 			assert(false);
 
+			break;
+		}
+	}
+
+	// 風のパーティクル
+	static int cnt = 0;
+	cnt++;
+	if (cnt % 7 == 0)
+	{
+		CParticle* particle = CParticle::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(30.0f, 30.0f, 0.0f), 50);
+
+		particle->SetPos(D3DXVECTOR3(CManager::SCREEN_WIDTH, FloatRandam(0.0f, CManager::SCREEN_HEIGHT - 20.0f), 0.0f));
+		particle->SetMovePos(D3DXVECTOR3(FloatRandam(-10.0f, -30.0f), FloatRandam(2.0f, -1.0f), 0.0f));
+		particle->SetMoveSize(D3DXVECTOR3(-0.35f, -0.35f, 0.0f));
+		particle->SetMoveRot(D3DXVECTOR3(0.0f, 0.0f, 0.05f));
+		particle->SetTexture(CTexture::TEXTURE_HANABIRA);
+
+		switch (randam)
+		{
+		case 0:
+			particle->SetTexture(CTexture::TEXTURE_HANABIRA);
+			break;
+		case 1:
+			particle->SetTexture(CTexture::TEXTURE_HANABIRA);
+			particle->SetCol(D3DXCOLOR(0.0f, 1.0f, 0.0f, 1.0f));
+			break;
+		case 2:
+			particle->SetTexture(CTexture::TEXTURE_HANABIRA);
+
+			if (FloatRandam(1.0f, 0.0f) < 0.55f)
+			{
+				particle->SetCol(D3DXCOLOR(1.0f, 0.25f, 0.0f, 1.0f));
+			}
+			else
+			{
+				particle->SetCol(D3DXCOLOR(1.0f, 1.0f, 0.0f, 1.0f));
+			}
+			break;
+		case 3:
+		{
+			float size = FloatRandam(60.0f, 20.0f);
+			particle->SetSize(D3DXVECTOR3(size, size, 0.0f));
+			particle->SetTexture(CTexture::TEXTURE_SNOW);
+		}
+		break;
+		default:
 			break;
 		}
 	}
