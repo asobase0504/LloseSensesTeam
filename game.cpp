@@ -26,6 +26,7 @@
 #include "particle.h"
 #include "utility.h"
 #include "timer.h"
+#include "season.h"
 
 // json‚Ìinclude
 #include "nlohmann/json.hpp"
@@ -46,6 +47,7 @@ CGimmick *CGame::m_pGimmick = nullptr;
 CGoal *CGame::m_pGoal = nullptr;
 CTime *CGame::m_pTimer = nullptr;
 CWind *CGame::m_pWind = nullptr;
+CSeason *CGame::m_pSeason = nullptr;
 
 //**************************************************
 // ƒ}ƒNƒ’è‹`
@@ -77,6 +79,9 @@ HRESULT CGame::Init()
 
 	m_pTimer = CTime::Create(D3DXVECTOR3(520.0f, 50.0f, 0.0f), D3DXVECTOR3(30.0f, 60.0f, 0.0f));
 	m_pTimer->Start();
+
+	m_pSeason = CSeason::Create(D3DXVECTOR3(620.0f, 50.0f, 0.0f), D3DXVECTOR3(30.0f, 60.0f, 0.0f));
+	m_pSeason->Start();
 
 	m_pPause = CPause::Create();
 

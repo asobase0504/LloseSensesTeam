@@ -135,6 +135,9 @@
     <ClCompile Include="particle.cpp">
       <Filter>ソース ファイル\particle</Filter>
     </ClCompile>
+    <ClCompile Include="season.cpp">
+      <Filter>ソース ファイル\system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precompile.h">
@@ -238,6 +241,9 @@
     </ClInclude>
     <ClInclude Include="particle.h">
       <Filter>ソース ファイル\particle</Filter>
+    </ClInclude>
+    <ClInclude Include="season.h">
+      <Filter>ソース ファイル\system</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

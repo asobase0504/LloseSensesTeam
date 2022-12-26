@@ -1,23 +1,24 @@
 //==================================================
-// score.cpp
-// Author: Buriya Kota
+// season.cpp
+// Author: Kajita Hiromu
 //==================================================
 
 //**************************************************
 // include
 //**************************************************
 #include "manager.h"
-#include "timer.h"
+#include "season.h"
 #include "number.h"
 
 //**************************************************
 // 静的メンバ変数
 //**************************************************
+CSeason::SEASON CSeason::m_season = SEASON_SPRING;
 
 //--------------------------------------------------
 // コンストラクタ
 //--------------------------------------------------
-CTime::CTime(int nPriority /* =4 */) : CObject(nPriority)
+CSeason::CSeason(int nPriority /* =4 */) : CObject(nPriority)
 {
 	m_nTime = 0;
 	SetType(TYPE_SCORE);
@@ -26,22 +27,24 @@ CTime::CTime(int nPriority /* =4 */) : CObject(nPriority)
 //--------------------------------------------------
 // デストラクタ
 //--------------------------------------------------
-CTime::~CTime()
+CSeason::~CSeason()
 {
 }
 
 //--------------------------------------------------
 // 初期化
 //--------------------------------------------------
-HRESULT CTime::Init()
+HRESULT CSeason::Init()
 {
+	m_nTime2 = 0;
+	m_nCntTime = 900;
 	return S_OK;
 }
 
 //--------------------------------------------------
 // 初期化
 //--------------------------------------------------
-HRESULT CTime::Init(D3DXVECTOR3 pos, D3DXVECTOR3 size)
+HRESULT CSeason::Init(D3DXVECTOR3 pos, D3DXVECTOR3 size)
 {
 	m_nTime = 0;
 	m_isStart = false;
@@ -59,7 +62,7 @@ HRESULT CTime::Init(D3DXVECTOR3 pos, D3DXVECTOR3 size)
 //--------------------------------------------------
 // 終了
 //--------------------------------------------------
-void CTime::Uninit()
+void CSeason::Uninit()
 {
 	for (int nCnt = 0; nCnt < MAX_TIME; nCnt++)
 	{
@@ -74,7 +77,7 @@ void CTime::Uninit()
 	CObject::DeletedObj();
 }
 
-void CTime::Update()
+void CSeason::Update()
 {
 	if (m_isStart)
 	{
@@ -85,7 +88,7 @@ void CTime::Update()
 //--------------------------------------------------
 // 位置の設定と大きさの設定
 //--------------------------------------------------
-void CTime::SetPos(D3DXVECTOR3 pos, D3DXVECTOR3 size)
+void CSeason::SetPos(D3DXVECTOR3 pos, D3DXVECTOR3 size)
 {
 	for (int nCnt = 0; nCnt < MAX_TIME; nCnt++)
 	{
@@ -96,7 +99,7 @@ void CTime::SetPos(D3DXVECTOR3 pos, D3DXVECTOR3 size)
 //--------------------------------------------------
 // タイマースタート
 //--------------------------------------------------
-void CTime::Start()
+void CSeason::Start()
 {
 	m_nTime = timeGetTime();
 	m_isStart = true;
@@ -105,26 +108,45 @@ void CTime::Start()
 //--------------------------------------------------
 // タイマーエンド
 //--------------------------------------------------
-int CTime::End()
+int CSeason::End()
 {
 	m_isStart = false;
 	return m_nTime;
 }
 
 //--------------------------------------------------
-// スコアの設定
+// タイムの設定
 //--------------------------------------------------
-void CTime::SetTime(int nTime)
+void CSeason::SetTime(int nTime)
 {
-	int aPosTexU[8];		// 各桁の数字を格納
+	int aPosTexU[MAX_TIME];		// 各桁の数字を格納
 
 	{
-		int score = nTime;
+		m_nCntTime--;				//nCntTimeが引かれていく
 
-		for (int nCnt = MAX_TIME; nCnt >= 0; --nCnt)
+		if (m_nCntTime < 0)			//nCntTimeが0より小さくなったら
 		{
-			aPosTexU[nCnt] = score % 10;
-			score /= 10;
+			m_nTime2++;				//時間が一秒ずつ減っていく
+			m_nCntTime = 900;		//時間の減りの速さ
+		}
+
+		aPosTexU[0] = m_nTime2 % 5 / 1;
+
+		if (m_nTime2 == 1)
+		{
+			m_season = SEASON_SPRING;
+		}
+		else if (m_nTime2 == 2)
+		{
+			m_season = SEASON_SUMMER;
+		}
+		else if (m_nTime2 == 3)
+		{
+			m_season = SEASON_FALL;
+		}
+		else if (m_nTime2 == 4)
+		{
+			m_season = SEASON_WINTER;
 		}
 	}
 
@@ -138,10 +160,10 @@ void CTime::SetTime(int nTime)
 //--------------------------------------------------
 // 生成
 //--------------------------------------------------
-CTime *CTime::Create(D3DXVECTOR3 pos, D3DXVECTOR3 size)
+CSeason *CSeason::Create(D3DXVECTOR3 pos, D3DXVECTOR3 size)
 {
-	CTime *pTime;
-	pTime = new CTime;
+	CSeason *pTime;
+	pTime = new CSeason;
 
 	if (pTime != nullptr)
 	{

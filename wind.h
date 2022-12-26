@@ -44,6 +44,7 @@ public:
 	void Draw() override;		//描画処理
 
 	WIND_ROT GetState();		//状態取得
+	float GetAirFlow();			//風量取得
 	static CWind *Create(const D3DXVECTOR3 pos, const D3DXVECTOR3 size);	//生成
 
 private:
@@ -53,6 +54,7 @@ private:
 	D3DXVECTOR3 m_size;		//サイズ
 	D3DXVECTOR3 m_rot;		//向き
 	D3DXVECTOR3 m_move;		//位置
+	float fAirFlow;			//風量
 
 	int m_nFrame;			//フレーム数
 	float m_nRandom;		//ランダム用変数

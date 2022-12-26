@@ -11,11 +11,14 @@
 
 #include "manager.h"
 #include "debug_proc.h"
-#include "object2D.h"
 #include "renderer.h"
+#include "input_keyboard.h"
+
+#include "object2D.h"
 #include "camera.h"
 #include "light.h"
-#include "input_keyboard.h"
+#include "game.h"
+#include "pause.h"
 
 //**************************************************
 // グローバル変数
@@ -181,8 +184,26 @@ void CRenderer::Update()
 	CDebugProc::Print("ワイヤーフレームの切り替え ( F1 ) ; [ %s ]\n\n", m_bMesh ? "OFF" : "ON");
 #endif // DEBUG
 
-	// すべての更新
-	CObject::UpdateAll();
+	if (CManager::GetGameMode() != CManager::MODE_GAME)
+	{
+		// すべての更新
+		CObject::UpdateAll();
+	}
+	else
+	{
+		CPause *pPause = CGame::GetPause();
+
+		if (pPause->GetIsPause())
+		{
+			// ポーズのUpdate
+			pPause->Update();
+		}
+		else
+		{
+			// すべての更新
+			CObject::UpdateAll();
+		}
+	}
 }
 
 //--------------------------------------------------
