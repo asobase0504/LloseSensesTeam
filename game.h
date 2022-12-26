@@ -21,6 +21,7 @@ class CMeshField;
 class CGimmick;
 class CGoal;
 class CTimer;
+class CPlayer;
 
 //**************************************************
 // クラス
@@ -37,7 +38,7 @@ public:
 	void Draw() override {}
 
 	// プレイヤーの情報の取得
-	static CPlayer3D* GetPlayer3D() { return m_pPlayer3D; }
+	static CPlayer* GetPlayer() { return m_pPlayer; }
 	static CScore* GetScore() { return m_pScore; }
 	static CPause* GetPause() { return m_pPause; }
 	static CMeshField* GetMeshField() { return m_pMeshField; }
@@ -53,7 +54,7 @@ public:
 private:
 	int m_time;		// ゲーム開始からの時間
 	
-	static CPlayer3D *m_pPlayer3D;
+	static CPlayer *m_pPlayer;
 	static CScore *m_pScore;
 	static CPause *m_pPause;
 	static CMeshField *m_pMeshField;
