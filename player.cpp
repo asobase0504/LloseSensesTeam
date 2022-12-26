@@ -45,6 +45,7 @@ HRESULT CPlayer::Init()
 	CObject2D::Init();
 
 	m_bDeath = false;
+	m_nTime = 0;
 
 	SetTexture(CTexture::TEXTURE_PLAYER);
 
@@ -61,8 +62,12 @@ void CPlayer::Update()
 
 	if (m_bDeath)
 	{
-		// ‘JˆÚ
-		CFade::GetInstance()->SetFade(CManager::MODE_RANKING);
+		m_nTime++;
+		if (m_nTime > 60)
+		{
+			// ‘JˆÚ
+			CFade::GetInstance()->SetFade(CManager::MODE_RANKING);
+		}
 	}
 }
 
@@ -101,21 +106,24 @@ void CPlayer::Control_()
 
 	m_rotMove += wind;
 
-	if (pInputKeyoard->GetTrigger(DIK_A) || 
-		pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_UP, 0)
-	|| pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_DOWN, 0)
-	|| pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_LEFT, 0)
-	|| pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_RIGHT, 0))
-	{// ¶
-		m_rotMove += -ROT_MOVE;
-	}
-	if (pInputKeyoard->GetTrigger(DIK_D) ||
-		pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_A, 0)
-		|| pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_B, 0)
-		|| pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_Y, 0)
-		|| pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_X, 0))
-	{// ‰E
-		m_rotMove += ROT_MOVE;
+	if (!m_bDeath)
+	{
+		if (pInputKeyoard->GetTrigger(DIK_A) ||
+			pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_UP, 0)
+			|| pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_DOWN, 0)
+			|| pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_LEFT, 0)
+			|| pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_RIGHT, 0))
+		{// ¶
+			m_rotMove += -ROT_MOVE;
+		}
+		if (pInputKeyoard->GetTrigger(DIK_D) ||
+			pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_A, 0)
+			|| pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_B, 0)
+			|| pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_Y, 0)
+			|| pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_X, 0))
+		{// ‰E
+			m_rotMove += ROT_MOVE;
+		}
 	}
 
 	// ŒX‚¢‚Ä‚é•ûŒü‚É‚æ‚Á‚ÄŠp“x‚ð‘«‚·
@@ -132,6 +140,16 @@ void CPlayer::Control_()
 	if (m_rotMove > ROT_DEATH || m_rotMove < -ROT_DEATH)
 	{
 		m_bDeath = true;
+	}
+
+	// Ž€–Sƒtƒ‰ƒO
+	if (m_rotMove > ROT_DEATH)
+	{
+		m_rotMove = ROT_DEATH;
+	}
+	if (m_rotMove < -ROT_DEATH)
+	{
+		m_rotMove = -ROT_DEATH;
 	}
 
 	// Šp“x‚ðÝ’è
