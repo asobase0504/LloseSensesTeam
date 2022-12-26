@@ -63,6 +63,7 @@ public:
 	const D3DXVECTOR3& GetPos() const { return m_posOrigin; }
 	const D3DXVECTOR3& GetRot() const { return m_rot; }
 	const D3DXVECTOR3& GetSize() const { return m_fSize; }
+	const D3DXCOLOR& GetCol() const { return m_col; }
 
 private:
 	// å≥ÇÃç¿ïW
