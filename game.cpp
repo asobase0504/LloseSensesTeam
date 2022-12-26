@@ -27,6 +27,7 @@
 #include "utility.h"
 #include "timer.h"
 #include "season.h"
+#include "bg.h"
 
 // jsonのinclude
 #include "nlohmann/json.hpp"
@@ -49,6 +50,7 @@ CTime *CGame::m_pTimer = nullptr;
 CWind *CGame::m_pWind = nullptr;
 CSeason *CGame::m_pSeason = nullptr;
 CScore *CGame::m_pScore = nullptr;
+CBG *CGame::m_pBG = nullptr;
 
 //**************************************************
 // マクロ定義
@@ -77,7 +79,8 @@ HRESULT CGame::Init()
 	CManager::GetSound()->Play(CSound::LABEL_BGM_GAME);
 	m_time = 0;
 
-	CObject2D* bg = CObject2D::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT * 0.5f, 0.0f), D3DXVECTOR3(CManager::SCREEN_WIDTH, CManager::SCREEN_HEIGHT, 0.0f));
+	m_pBG = new CBG;
+	m_pBG->Init();
 
 	m_pScore = CScore::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.3f, 50.0f, 0.0f), D3DXVECTOR3(60.0f, 120.0f, 0.0f));
 	m_pScore->SetScore(0);
@@ -92,8 +95,6 @@ HRESULT CGame::Init()
 
 	m_pPlayer = CPlayer::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT - (320.0f * 0.15f), 0.0f), D3DXVECTOR3(820.0f, 820.0f, 0.0f));
 	m_pWind = CWind::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.8f, CManager::SCREEN_WIDTH * 0.3f, 0.0f),D3DXVECTOR3(300.0f, 300.0f,0.0f));
-
-	bg->SetTexture(CTexture::TEXTURE_TITLE_BG);
 	return S_OK;
 }
 
@@ -124,6 +125,8 @@ void CGame::Update()
 
 		m_pScore->AddScore(score);
 	}
+
+	m_pBG->SetTexture(m_pSeason->GetSeason());
 
 	// 風のパーティクル
 	if(m_time % 2 == 0)

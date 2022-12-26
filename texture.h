@@ -34,6 +34,14 @@ public: /* 定義 */
 		TEXTURE_PAUSE_TITLE,		// タイトルへ
 		TEXTURE_PAUSE_CLOSE,		// 閉じる
 		TEXTURE_PAUSE,				// ポーズ
+		TEXTURE_TREE0,				// ポーズ
+		TEXTURE_TREE1,				// ポーズ
+		TEXTURE_TREE2,				// ポーズ
+		TEXTURE_TREE3,				// ポーズ
+		TEXTURE_BG0,				// ポーズ
+		TEXTURE_BG1,				// ポーズ
+		TEXTURE_BG2,				// ポーズ
+		TEXTURE_BG3,				// ポーズ
 		TEXTURE_MAX,
 		TEXTURE_NONE,				// 使用しない
 	};

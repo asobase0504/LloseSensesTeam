@@ -24,6 +24,7 @@ class CPlayer;
 class CWind;
 class CSeason;
 class CScore;
+class CBG;
 
 //**************************************************
 // ƒNƒ‰ƒX
@@ -67,6 +68,7 @@ private:
 	static CTime *m_pTimer;
 	static CWind *m_pWind;
 	static CSeason *m_pSeason;
+	static CBG *m_pBG;
 };
 
 #endif	// _GAME_H_

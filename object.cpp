@@ -23,7 +23,7 @@ CObject *CObject::m_pCurrent[] = {};
 //--------------------------------------------------
 // プライオリティを使ったコンストラクタ
 //--------------------------------------------------
-CObject::CObject(int nPriority /* PRIORITY_3 */) : m_pPrev(nullptr), m_pNext(nullptr)
+CObject::CObject(int nPriority /* PRIORITY_3 */) : m_pPrev(nullptr), m_pNext(nullptr), m_bDeleted(false)
 {
 	if (m_pTop[nPriority] == nullptr)
 	{// Topがnullptrの時
