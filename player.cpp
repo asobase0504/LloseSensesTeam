@@ -36,6 +36,8 @@ HRESULT CPlayer::Init()
 
 	m_bDeath = false;
 
+	SetTexture(CTexture::TEXTURE_PLAYER);
+
 	return S_OK;
 }
 
