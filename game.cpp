@@ -73,6 +73,8 @@ HRESULT CGame::Init()
 {
 	m_time = 0;
 
+	CObject2D* bg = CObject2D::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT * 0.5f, 0.0f), D3DXVECTOR3(CManager::SCREEN_WIDTH, CManager::SCREEN_HEIGHT, 0.0f));
+
 	m_pTimer = CTime::Create(D3DXVECTOR3(520.0f, 50.0f, 0.0f), D3DXVECTOR3(30.0f, 60.0f, 0.0f));
 	m_pTimer->Start();
 
@@ -81,6 +83,7 @@ HRESULT CGame::Init()
 	m_pPlayer = CPlayer::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT - (320.0f * 0.15f), 0.0f), D3DXVECTOR3(820.0f, 820.0f, 0.0f));
 	m_pWind = CWind::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.8f, CManager::SCREEN_WIDTH * 0.3f, 0.0f),D3DXVECTOR3(300.0f, 300.0f,0.0f));
 
+	bg->SetTexture(CTexture::TEXTURE_TITLE_BG);
 	return S_OK;
 }
 
@@ -121,17 +124,26 @@ void CGame::Update()
 		{
 		case CWind::WIND_ROT::WIND_LEFT:
 		{
-			particle->SetPos(D3DXVECTOR3(CManager::SCREEN_WIDTH, FloatRandam(0.0f, CManager::SCREEN_HEIGHT), 0.0f));
+			particle->SetPos(D3DXVECTOR3(CManager::SCREEN_WIDTH, FloatRandam(0.0f, CManager::SCREEN_HEIGHT - 20.0f), 0.0f));
 			particle->SetMovePos(D3DXVECTOR3(FloatRandam(-10.0f,-30.0f), FloatRandam(1.0f, -1.0f), 0.0f));
 			particle->SetMoveSize(D3DXVECTOR3(-0.35f, -0.35f, 0.0f));
 			particle->SetMoveRot(D3DXVECTOR3(0.0f, 0.0f, 0.05f));
 			particle->SetTexture(CTexture::TEXTURE_HANABIRA);
-			particle->SetCol(D3DXCOLOR(0.0f, 1.0f, 0.0f, 1.0f));
+			float randam = FloatRandam(1.0f, 0.0f);
+			if (randam < 0.55f)
+			{
+				particle->SetCol(D3DXCOLOR(1.0f, 0.25f, 0.0f, 1.0f));
+			}
+			else
+			{
+				particle->SetCol(D3DXCOLOR(1.0f, 1.0f, 0.0f, 1.0f));
+			}
+			//			particle->SetCol(D3DXCOLOR(0.0f, 1.0f, 0.0f, 1.0f));
 		}
 		break;
 		case CWind::WIND_ROT::WIND_RIGHT:
 		{
-			particle->SetPos(D3DXVECTOR3(0.0f, FloatRandam(0.0f, CManager::SCREEN_HEIGHT), 0.0f));
+			particle->SetPos(D3DXVECTOR3(0.0f, FloatRandam(0.0f, CManager::SCREEN_HEIGHT - 20.0f), 0.0f));
 			particle->SetMovePos(D3DXVECTOR3(FloatRandam(30.0f, 10.0f), FloatRandam(1.0f, -1.0f), 0.0f));
 			particle->SetMoveSize(D3DXVECTOR3(-0.35f, -0.35f, 0.0f));
 			particle->SetMoveRot(D3DXVECTOR3(0.0f, 0.0f, 0.05f));

@@ -19,7 +19,7 @@
 //==================================================
 const char* CTexture::s_FileName[] =
 {// テクスチャのパス
-	"data/TEXTURE/player1.png",		// プレイヤー
+	"data/TEXTURE/player2.png",		// プレイヤー
 	"data/TEXTURE/thumbnail.png",	// 地面
 	"data/TEXTURE/shadow000.jpg",	// 影
 	"data/TEXTURE/snow.png",		// TITLE_BG
