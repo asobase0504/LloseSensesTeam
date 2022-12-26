@@ -34,6 +34,8 @@ HRESULT CPlayer::Init()
 {
 	CObject2D::Init();
 
+	m_bDeath = false;
+
 	return S_OK;
 }
 
@@ -86,13 +88,20 @@ void CPlayer::Control_()
 		m_rotMove += 0.1f;
 	}
 
-	if (m_rotMove >= 0.0f)
+	// ŒX‚¢‚Ä‚é•ûŒü‚É‚æ‚Á‚ÄŠp“x‚ð‘«‚·
+	if (m_rotMove > 0.0f)
 	{
 		m_rotMove += 0.02f;
 	}
 	if (m_rotMove < 0.0f)
 	{
 		m_rotMove += -0.02f;
+	}
+
+	// Ž€–Sƒtƒ‰ƒO
+	if (m_rotMove > 1.57f || m_rotMove < -1.57f)
+	{
+		m_bDeath = true;
 	}
 
 	// Šp“x‚ðÝ’è
