@@ -12,6 +12,7 @@
 #include "manager.h"
 #include "season.h"
 #include "timer.h"
+#include "tutorial.h"
 #include "utility.h"
 #include "wind.h"
 //--------------------------------------------------
@@ -63,37 +64,75 @@ void CWind::Uninit()
 //--------------------------------------------------
 void CWind::Update()
 {
-	CTime *pTime = CGame::GetTimer();
-	int Timer = pTime->GetTime() / 100;
-
-	switch (CSeason::GetSeason())
+	if (CManager::GetGameMode() == CManager::MODE_TUTORIAL)
 	{
-	case CSeason::SEASON_SPRING:
-	{
-		fAirFlow = 0.01f + Timer * 0.000003f;
-	}
-	break;
+		CTime *pTimer = CTutorial::GetTimer();
+		int Timer = pTimer->GetTime() / 100;
 
-	case CSeason::SEASON_SUMMER:
-	{
-		fAirFlow = 0.02f + Timer * 0.000003f;
-	}
-	break;
-
-	case CSeason::SEASON_FALL:
-	{
-		fAirFlow = 0.03f + Timer * 0.000003f;
-	}
-	break;
-
-	case CSeason::SEASON_WINTER:
-	{
-		fAirFlow = 0.035f + Timer * 0.000005f;
-	}
-	break;
-
-	default:
+		switch (CSeason::GetSeason())
+		{
+		case CSeason::SEASON_SPRING:
+		{
+			fAirFlow = SPRING_SPEED + Timer * MAX_BROW;
+		}
 		break;
+
+		case CSeason::SEASON_SUMMER:
+		{
+			fAirFlow = SUMMER_SPEED + Timer * MAX_BROW;
+		}
+		break;
+
+		case CSeason::SEASON_FALL:
+		{
+			fAirFlow = FALL_SPEED + Timer * MAX_BROW;
+		}
+		break;
+
+		case CSeason::SEASON_WINTER:
+		{
+			fAirFlow = WINTER_SPEED + Timer * MAX_BROW;
+		}
+		break;
+
+		default:
+			break;
+		}
+	}
+	else
+	{
+		CTime *pTime = CGame::GetTimer();
+		int Timer = pTime->GetTime() / 100;
+
+		switch (CSeason::GetSeason())
+		{
+		case CSeason::SEASON_SPRING:
+		{
+			fAirFlow = 0.01f + Timer * 0.000003f;
+		}
+		break;
+
+		case CSeason::SEASON_SUMMER:
+		{
+			fAirFlow = 0.02f + Timer * 0.000003f;
+		}
+		break;
+
+		case CSeason::SEASON_FALL:
+		{
+			fAirFlow = 0.03f + Timer * 0.000003f;
+		}
+		break;
+
+		case CSeason::SEASON_WINTER:
+		{
+			fAirFlow = 0.035f + Timer * 0.000005f;
+		}
+		break;
+
+		default:
+			break;
+		}
 	}
 
 	//フレームを加算
@@ -103,7 +142,7 @@ void CWind::Update()
 	{
 		fAirFlow = 0;
 
-		if (m_nFrame > 10)
+		if (m_nFrame > 30)
 		{//フレーム数が30を超えたら
 		 //ランダムの値を変える
 
@@ -116,7 +155,7 @@ void CWind::Update()
 		fAirFlow *= -1.0f;
 
 		if (m_nFrame > 180)
-		{//フレーム数が120を超えたら
+		{//フレーム数が180を超えたら
 			m_state = WIND_STOP;
 			m_nRandom = FloatRandam(3.0f, 0.0f);
 
