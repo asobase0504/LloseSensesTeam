@@ -1,9 +1,9 @@
 //==================================================
-// utility.h
-// Author: Buriya Kota
+// wind.h
+// Author: Kajita Hiromu
 //==================================================
-#ifndef _UTILITY_H_
-#define _UTILITY_H_
+#ifndef _WIND_H_
+#define _WIND_H_
 
 //**************************************************
 // インクルード
@@ -23,13 +23,30 @@
 //**************************************************
 
 //**************************************************
-// グローバル関数
+// クラス
 //**************************************************
+class CWind : public CObject2D
+{
+public:
+	explicit CWind(int nPriority = PRIORITY_EFFECT);
+	~CWind();
 
-// 座標変換
-D3DXVECTOR3 GetWorldToScreenPos(const D3DXVECTOR3& pos);
-float Vec2Cross(D3DXVECTOR3* v1, D3DXVECTOR3* v2);
-float D3DXVec2Dot(D3DXVECTOR3* v1, D3DXVECTOR3* v2);
-float FloatRandam(float fMax, float fMin);
+	HRESULT Init() override;
+	void Uninit() override;
+	void Update() override;
+	void Draw() override;
 
-#endif	// _UTILITY_H_
+	void SetWind(D3DXVECTOR3 rot, float air);
+
+	static CWind *Create(const D3DXVECTOR3 pos, const D3DXVECTOR3 size);
+
+private:
+	D3DXVECTOR3 m_pos;		//位置
+	D3DXVECTOR3 m_size;		//サイズ
+	D3DXVECTOR3 m_rot;		//向き
+	D3DXVECTOR3 m_move;		//位置
+
+};
+
+
+#endif	// _NUMBER_H_

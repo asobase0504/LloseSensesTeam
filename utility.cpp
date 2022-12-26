@@ -89,3 +89,11 @@ float D3DXVec2Dot(D3DXVECTOR3* v1, D3DXVECTOR3* v2)
 {
 	return v1->x * v2->x + v1->z * v2->z;
 }
+
+//---------------------------------------------------------------------------
+// ¬”“_‚Ìƒ‰ƒ“ƒ_ƒ€
+//---------------------------------------------------------------------------
+float FloatRandam(float fMax, float fMin)
+{
+	return ((rand() / (float)RAND_MAX) * (fMax - fMin)) + fMin;
+}
