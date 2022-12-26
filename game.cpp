@@ -88,9 +88,6 @@ void CGame::Uninit()
 {
 	//CManager::GetSound()->Stop();
 
-	// スコアの設定
-	//CManager::SetNowScore(m_pScore->GetScore());
-
 	// リリースはリリースオールでやってある
 	m_pTimer = nullptr;
 	m_pPlayer = nullptr;
