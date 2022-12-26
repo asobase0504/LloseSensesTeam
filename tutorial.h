@@ -21,6 +21,7 @@ class CWind;
 class CSeason;
 class CBG;
 class CTime;
+class CObject2D;
 
 //**************************************************
 // ƒNƒ‰ƒX
@@ -49,6 +50,7 @@ public:
 
 private:
 	int m_time;
+	CObject2D *pTutorial[2];
 
 	static CPlayer *m_pPlayer;
 	static CPause *m_pPause;

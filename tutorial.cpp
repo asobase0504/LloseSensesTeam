@@ -72,6 +72,18 @@ HRESULT CTutorial::Init()
 
 	m_pPlayer = CPlayer::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT - (320.0f * 0.15f), 0.0f), D3DXVECTOR3(820.0f, 820.0f, 0.0f));
 
+	pTutorial[0] = CObject2D::Create(
+		D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.8f, CManager::SCREEN_HEIGHT * 0.55f, 0.0f), 
+		D3DXVECTOR3(400.0f, 600.0f, 0.0f),
+		2);
+	pTutorial[0]->SetTexture(CTexture::TEXTURE_TUTORIAL_KEY);
+
+	pTutorial[1] = CObject2D::Create(
+		D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.4f, CManager::SCREEN_HEIGHT * 0.2f, 0.0f),
+		D3DXVECTOR3(500.0f, 200.0f, 0.0f),
+		2);
+	pTutorial[1]->SetTexture(CTexture::TEXTURE_TUTORIAL_TUTORIAL);
+
 	return S_OK;
 }
 
