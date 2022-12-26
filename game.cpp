@@ -77,6 +77,7 @@ CGame::~CGame()
 //--------------------------------------------------
 HRESULT CGame::Init()
 {
+	CManager::GetSound()->Play(CSound::LABEL_BGM_GAME);
 	m_time = 0;
 
 	CObject2D* bg = CObject2D::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT * 0.5f, 0.0f), D3DXVECTOR3(CManager::SCREEN_WIDTH, CManager::SCREEN_HEIGHT, 0.0f));
@@ -98,9 +99,9 @@ HRESULT CGame::Init()
 //--------------------------------------------------
 void CGame::Uninit()
 {
-	//CManager::GetSound()->Stop();
+	CManager::GetSound()->Stop();
 
-	// リリースはリリースオールでやってある
+	CManager::SetNowScore(m_pScore->GetScore());
 
 	CObject::DeletedObj();
 }

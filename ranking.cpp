@@ -79,26 +79,6 @@ void CRanking::Uninit()
 {
 	CManager::GetSound()->Stop();
 
-	for (int nCnt = 0; nCnt < MAX_RANK; nCnt++)
-	{
-		if (m_pScore[nCnt] == nullptr)
-		{
-			continue;
-		}
-
-		m_pScore[nCnt]->Uninit();
-	}
-
-	if (m_pRanking != nullptr)
-	{
-		m_pRanking->Uninit();
-	}
-
-	if (m_pRankingBg != nullptr)
-	{
-		m_pRankingBg->Uninit();
-	}
-
 	CObject::DeletedObj();
 }
 
@@ -205,6 +185,11 @@ void CRanking::SetRanking(int nScore)
 
 	for (int nCntRank = 0; nCntRank < MAX_RANK; nCntRank++)
 	{
+		if (m_aRankingData[nCntRank] == nScore)
+		{
+			m_pScore[nCntRank]->SetLight(true);
+		}
+
 		m_pScore[nCntRank]->SetScore(m_aRankingData[nCntRank]);
 	}
 

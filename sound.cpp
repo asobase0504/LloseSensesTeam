@@ -16,8 +16,11 @@
 //==================================================
 const CSound::SParam CSound::PARAM[] =
 {// 各音素材のパラメータ
+	{ "data/SOUND/BGM/main.wav", -1 },		// メインBGM
+	{ "data/SOUND/BGM/game.wav", -1 },		// ゲームBGM
 	{ "data/SOUND/SE/enter.wav", 0 },		// 決定音
-	{ "data/SOUND/SE/select.wav", 0 },		// 選択音
+	{ "data/SOUND/SE/enter.wav", 0 },		// 選択
+	{ "data/SOUND/SE/wind.wav", -1 },		// 風の音
 };
 
 static_assert(sizeof(CSound::PARAM) / sizeof(CSound::PARAM[0]) == CSound::LABEL_MAX, "aho");

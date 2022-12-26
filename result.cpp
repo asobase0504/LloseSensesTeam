@@ -35,6 +35,8 @@ CResult::~CResult()
 //--------------------------------------------------
 HRESULT CResult::Init()
 {
+	CManager::GetSound()->Play(CSound::LABEL_BGM_MAIN);
+
 	m_pObject2D[0] = CObject2D::Create(
 		D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT * 0.5f, 0.0f),
 		D3DXVECTOR3((float)CManager::SCREEN_WIDTH, (float)CManager::SCREEN_HEIGHT, 0.0f),
@@ -55,6 +57,7 @@ HRESULT CResult::Init()
 //--------------------------------------------------
 void CResult::Uninit()
 {
+	CManager::GetSound()->Stop();
 	CObject::DeletedObj();
 }
 

@@ -62,7 +62,7 @@ void CPlayer::Update()
 	if (m_bDeath)
 	{
 		// ‘JˆÚ
-		CFade::GetInstance()->SetFade(CManager::MODE_RESULT);
+		CFade::GetInstance()->SetFade(CManager::MODE_RANKING);
 	}
 }
 
