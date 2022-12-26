@@ -173,6 +173,7 @@
     <ClCompile Include="object3D.cpp" />
     <ClCompile Include="objectX.cpp" />
     <ClCompile Include="pause.cpp" />
+    <ClCompile Include="player.cpp" />
     <ClCompile Include="precompile.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
@@ -207,6 +208,7 @@
     <ClInclude Include="object3D.h" />
     <ClInclude Include="objectX.h" />
     <ClInclude Include="pause.h" />
+    <ClInclude Include="player.h" />
     <ClInclude Include="precompile.h" />
     <ClInclude Include="ranking.h" />
     <ClInclude Include="renderer.h" />
