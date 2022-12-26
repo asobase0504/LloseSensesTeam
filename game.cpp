@@ -107,31 +107,45 @@ void CGame::Update()
 
 	CInputKeyboard *pInputKeyoard = CManager::GetInputKeyboard();
 
-	if (pInputKeyoard->GetTrigger(DIK_RETURN))
+	if (m_pPlayer->GetDeath())
 	{
 		// 遷移
 		CFade::GetInstance()->SetFade(CManager::MODE_RESULT);
 	}
 
-	{ // 風のパーティクル
+	// 風のパーティクル
+	if(m_time % 2 == 0)
+	{
+		CParticle* particle = CParticle::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(30.0f, 30.0f, 0.0f), 50);
 		switch (m_pWind->GetState())
 		{
 		case CWind::WIND_ROT::WIND_LEFT:
 		{
-			CParticle* particle = CParticle::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH, FloatRandam(0.0f, CManager::SCREEN_HEIGHT), 0.0f), D3DXVECTOR3(30.0f, 30.0f, 0.0f), 50);
+			particle->SetPos(D3DXVECTOR3(CManager::SCREEN_WIDTH, FloatRandam(0.0f, CManager::SCREEN_HEIGHT), 0.0f));
 			particle->SetMovePos(D3DXVECTOR3(FloatRandam(-10.0f,-30.0f), FloatRandam(1.0f, -1.0f), 0.0f));
 			particle->SetMoveSize(D3DXVECTOR3(-0.35f, -0.35f, 0.0f));
 			particle->SetMoveRot(D3DXVECTOR3(0.0f, 0.0f, 0.05f));
 			particle->SetTexture(CTexture::TEXTURE_HANABIRA);
+			particle->SetCol(D3DXCOLOR(0.0f, 1.0f, 0.0f, 1.0f));
 		}
 		break;
 		case CWind::WIND_ROT::WIND_RIGHT:
 		{
-			CParticle* particle = CParticle::Create(D3DXVECTOR3(0.0f, FloatRandam(0.0f, CManager::SCREEN_HEIGHT), 0.0f), D3DXVECTOR3(30.0f, 30.0f, 0.0f), 50);
+			particle->SetPos(D3DXVECTOR3(0.0f, FloatRandam(0.0f, CManager::SCREEN_HEIGHT), 0.0f));
 			particle->SetMovePos(D3DXVECTOR3(FloatRandam(30.0f, 10.0f), FloatRandam(1.0f, -1.0f), 0.0f));
 			particle->SetMoveSize(D3DXVECTOR3(-0.35f, -0.35f, 0.0f));
 			particle->SetMoveRot(D3DXVECTOR3(0.0f, 0.0f, 0.05f));
 			particle->SetTexture(CTexture::TEXTURE_HANABIRA);
+
+			float randam = FloatRandam(1.0f, 0.0f);
+			if (randam < 0.55f)
+			{
+				particle->SetCol(D3DXCOLOR(1.0f, 0.25f, 0.0f, 1.0f));
+			}
+			else
+			{
+				particle->SetCol(D3DXCOLOR(1.0f, 1.0f, 0.0f, 1.0f));
+			}
 		}
 		break;
 		default:
