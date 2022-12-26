@@ -44,8 +44,6 @@ public:
 	static CTime *Create(D3DXVECTOR3 pos, D3DXVECTOR3 size);
 
 private:
-	// Number型の配列
-	CNumber *m_pNumber[MAX_TIME];
 	// スコアの値
 	int m_nTime;
 

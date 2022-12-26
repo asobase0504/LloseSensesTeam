@@ -29,6 +29,7 @@ public: /* 定義 */
 		TEXTURE_NUMBER,				// タイム
 		TEXTURE_WIND,
 		TEXTURE_HANABIRA,
+		TEXTURE_SNOW,
 		TEXTURE_MAX,
 		TEXTURE_NONE,				// 使用しない
 	};
