@@ -70,6 +70,8 @@ HRESULT CTutorial::Init()
 	m_pSeason = CSeason::Create(D3DXVECTOR3(620.0f, 50.0f, 0.0f), D3DXVECTOR3(30.0f, 60.0f, 0.0f));
 	m_pSeason->Start();
 
+	m_pPlayer = CPlayer::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT - (320.0f * 0.15f), 0.0f), D3DXVECTOR3(820.0f, 820.0f, 0.0f));
+
 	return S_OK;
 }
 
@@ -92,7 +94,7 @@ void CTutorial::Update()
 	CInputKeyboard *pInputKeyoard = CManager::GetInputKeyboard();
 	CInputJoyPad *pInputJoyPad = CManager::GetInputJoyPad();
 
-	if (pInputKeyoard->GetTrigger(DIK_BACKSPACE) || pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_B, 0))
+	if (pInputKeyoard->GetTrigger(DIK_BACKSPACE) || pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_BACK, 0))
 	{
 		// ƒTƒEƒ“ƒh
 		CManager::GetSound()->Play(CSound::LABEL_SE_ENTER);
@@ -100,9 +102,8 @@ void CTutorial::Update()
 		CFade::GetInstance()->SetFade(CManager::MODE_TITLE);
 	}
 
-	if (pInputKeyoard->GetTrigger(DIK_B))
+	if (pInputKeyoard->GetTrigger(DIK_B) || pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_RIGHT_SHOULDER, 0))
 	{
-		m_pPlayer = CPlayer::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT - (320.0f * 0.15f), 0.0f), D3DXVECTOR3(820.0f, 820.0f, 0.0f));
 		m_pWind = CWind::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.8f, CManager::SCREEN_WIDTH * 0.3f, 0.0f), D3DXVECTOR3(300.0f, 300.0f, 0.0f));
 	}
 
