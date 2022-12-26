@@ -130,32 +130,37 @@ void CGame::Update()
 		case CWind::WIND_ROT::WIND_LEFT:
 		{
 			particle->SetPos(D3DXVECTOR3(CManager::SCREEN_WIDTH, FloatRandam(0.0f, CManager::SCREEN_HEIGHT - 20.0f), 0.0f));
-			particle->SetMovePos(D3DXVECTOR3(FloatRandam(-10.0f,-30.0f), FloatRandam(1.0f, -1.0f), 0.0f));
+			particle->SetMovePos(D3DXVECTOR3(FloatRandam(-10.0f,-30.0f), FloatRandam(2.0f, -1.0f), 0.0f));
 			particle->SetMoveSize(D3DXVECTOR3(-0.35f, -0.35f, 0.0f));
 			particle->SetMoveRot(D3DXVECTOR3(0.0f, 0.0f, 0.05f));
 			particle->SetTexture(CTexture::TEXTURE_HANABIRA);
-			float randam = FloatRandam(1.0f, 0.0f);
-			if (randam < 0.55f)
-			{
-				particle->SetCol(D3DXCOLOR(1.0f, 0.25f, 0.0f, 1.0f));
-			}
-			else
-			{
-				particle->SetCol(D3DXCOLOR(1.0f, 1.0f, 0.0f, 1.0f));
-			}
-			//			particle->SetCol(D3DXCOLOR(0.0f, 1.0f, 0.0f, 1.0f));
 		}
 		break;
 		case CWind::WIND_ROT::WIND_RIGHT:
 		{
 			particle->SetPos(D3DXVECTOR3(0.0f, FloatRandam(0.0f, CManager::SCREEN_HEIGHT - 20.0f), 0.0f));
-			particle->SetMovePos(D3DXVECTOR3(FloatRandam(30.0f, 10.0f), FloatRandam(1.0f, -1.0f), 0.0f));
+			particle->SetMovePos(D3DXVECTOR3(FloatRandam(30.0f, 10.0f), FloatRandam(2.0f, -1.0f), 0.0f));
 			particle->SetMoveSize(D3DXVECTOR3(-0.35f, -0.35f, 0.0f));
 			particle->SetMoveRot(D3DXVECTOR3(0.0f, 0.0f, 0.05f));
+		}
+		break;
+		default:
+			break;
+		}
+
+		switch (m_pSeason->GetSeason())
+		{
+		case CSeason::SEASON_SPRING:
+			particle->SetTexture(CTexture::TEXTURE_HANABIRA);
+			break;
+		case CSeason::SEASON_SUMMER:
+			particle->SetTexture(CTexture::TEXTURE_HANABIRA);
+			particle->SetCol(D3DXCOLOR(0.0f, 1.0f, 0.0f, 1.0f));
+			break;
+		case CSeason::SEASON_FALL:
 			particle->SetTexture(CTexture::TEXTURE_HANABIRA);
 
-			float randam = FloatRandam(1.0f, 0.0f);
-			if (randam < 0.55f)
+			if (FloatRandam(1.0f, 0.0f) < 0.55f)
 			{
 				particle->SetCol(D3DXCOLOR(1.0f, 0.25f, 0.0f, 1.0f));
 			}
@@ -163,8 +168,10 @@ void CGame::Update()
 			{
 				particle->SetCol(D3DXCOLOR(1.0f, 1.0f, 0.0f, 1.0f));
 			}
-		}
-		break;
+			break;
+		case CSeason::SEASON_WINTER:
+			particle->SetTexture(CTexture::TEXTURE_NONE);
+			break;
 		default:
 			break;
 		}
