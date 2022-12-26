@@ -60,16 +60,6 @@ void CPlayer::Update()
 {
 	CObject2D::Update();
 	Control_();
-
-	if (m_bDeath)
-	{
-		m_nTime++;
-		if (m_nTime > 60)
-		{
-			// 遷移
-			CFade::GetInstance()->SetFade(CManager::MODE_RANKING);
-		}
-	}
 }
 
 //--------------------------------------------------
@@ -154,13 +144,16 @@ void CPlayer::Control_()
 		m_rotMove += -ROT_GRAVITY;
 	}
 
-	// 死亡フラグ
-	if (m_rotMove > ROT_DEATH || m_rotMove < -ROT_DEATH)
+	if (CManager::GetGameMode() == CManager::MODE_GAME)
 	{
-		m_bDeath = true;
+		// 死亡フラグ
+		if (m_rotMove > ROT_DEATH || m_rotMove < -ROT_DEATH)
+		{
+			m_bDeath = true;
+		}
 	}
 
-	// 死亡フラグ
+	// プレイヤーを動かなくする
 	if (m_rotMove > ROT_DEATH)
 	{
 		m_rotMove = ROT_DEATH;

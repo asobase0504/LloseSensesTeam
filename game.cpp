@@ -218,6 +218,19 @@ void CGame::Update()
 			}
 		}
 	}
+
+	if (m_pPlayer != nullptr)
+	{
+		if (m_pPlayer->GetDeath())
+		{
+			m_nTime++;
+			if (m_nTime > 60)
+			{
+				// ‘JˆÚ
+				CFade::GetInstance()->SetFade(CManager::MODE_RANKING);
+			}
+		}
+	}
 }
 
 //--------------------------------------------------
