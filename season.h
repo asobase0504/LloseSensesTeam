@@ -13,7 +13,6 @@
 //**************************************************
 // 前方前言　実態はNG　ポインタだけならOK
 //**************************************************
-class CNumber;
 
 //**************************************************
 // クラス
@@ -54,8 +53,6 @@ public:
 	static CSeason *Create(D3DXVECTOR3 pos, D3DXVECTOR3 size);
 
 private:
-	// Number型の配列
-	CNumber *m_pNumber[MAX_TIME];
 	// スコアの値
 	int m_nTime;
 	int m_nTime2;

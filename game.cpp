@@ -100,8 +100,6 @@ HRESULT CGame::Init()
 //--------------------------------------------------
 void CGame::Uninit()
 {
-	CManager::GetSound()->Stop();
-
 	CManager::SetNowScore(m_pScore->GetScore());
 
 	CObject::DeletedObj();

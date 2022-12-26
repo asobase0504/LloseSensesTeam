@@ -254,6 +254,7 @@ void CManager::SetMode(MODE mode)
 		m_pGameMode = nullptr;
 	}
 
+	CManager::GetSound()->Stop();
 	m_mode = mode;
 
 	CObject::ReleaseWithoutMode();
