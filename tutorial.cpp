@@ -114,10 +114,10 @@ void CTutorial::Update()
 		CFade::GetInstance()->SetFade(CManager::MODE_TITLE);
 	}
 
-	if (pInputKeyoard->GetTrigger(DIK_B) || pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_RIGHT_SHOULDER, 0))
-	{
-		m_pWind = CWind::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.8f, CManager::SCREEN_WIDTH * 0.3f, 0.0f), D3DXVECTOR3(300.0f, 300.0f, 0.0f));
-	}
+	//if (pInputKeyoard->GetTrigger(DIK_B) || pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_RIGHT_SHOULDER, 0))
+	//{
+	//	m_pWind = CWind::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.8f, CManager::SCREEN_WIDTH * 0.3f, 0.0f), D3DXVECTOR3(300.0f, 300.0f, 0.0f));
+	//}
 
 	m_pBG->SetTexture(m_pSeason->GetSeason());
 

@@ -23,7 +23,7 @@ const char* CTexture::s_FileName[] =
 	"data/TEXTURE/thumbnail.png",	// ’n–Ê
 	"data/TEXTURE/shadow000.jpg",	// ‰e
 	"data/TEXTURE/snow.png",		// TITLE_BG
-	"data/TEXTURE/TITLE3.png",		// TITLE
+	"data/TEXTURE/TITLE0.png",		// TITLE
 	"data/TEXTURE/TUTORIAL.png",	// TUTORIAL
 	"data/TEXTURE/START.png",		// START
 	"data/TEXTURE/RESULT.png",		// RESULT

@@ -20,7 +20,7 @@
 #include "particle.h"
 #include "utility.h"
 
-#define SUKINASUUZI (3)
+#define SUKINASUUZI (0)
 
 //--------------------------------------------------
 // コンストラクタ
