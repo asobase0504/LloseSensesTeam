@@ -14,9 +14,12 @@
 // 前方前言　実態はNG　ポインタだけならOK
 //**************************************************
 class CScore;
-class CPlayer3D;
-class CEnemy3D;
 class CLockOnUIManager;
+class CPause;
+class CPlayer;
+class CWind;
+class CSeason;
+class CBG;
 
 //**************************************************
 // クラス
@@ -32,8 +35,11 @@ public:
 	void Update() override;
 	void Draw() override {}
 
-	static CLockOnUIManager* GetLockOnUIManager() { return m_pLockOnUIManager; }
-	static CScore* GetScore() { return m_pScore; }
+	// プレイヤーの情報の取得
+	static CPlayer* GetPlayer() { return m_pPlayer; }
+	static CPause* GetPause() { return m_pPause; }
+	static CSeason* GetSeason() { return m_pSeason; }
+	static CWind* GetWind() { return m_pWind; }
 
 	void LoadPlayer(const char *pFdata);
 
@@ -41,11 +47,12 @@ public:
 
 private:
 	int m_time;
-	CEnemy3D *m_pEnemy[5];
-	static CPlayer3D *m_pPlayer3D;
-	static CScore *m_pScore;
-	static CLockOnUIManager *m_pLockOnUIManager;
 
+	static CPlayer *m_pPlayer;
+	static CPause *m_pPause;
+	static CWind *m_pWind;
+	static CSeason *m_pSeason;
+	static CBG *m_pBG;
 };
 
 #endif	// _TUTORIAL_H_
