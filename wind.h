@@ -31,20 +31,23 @@ public:
 	explicit CWind(int nPriority = PRIORITY_EFFECT);
 	~CWind();
 
-	HRESULT Init() override;
-	void Uninit() override;
-	void Update() override;
-	void Draw() override;
+	HRESULT Init() override;	//初期化
+	void Uninit() override;		//終了処理
+	void Update() override;		//更新処理
+	void Draw() override;		//描画処理
 
-	void SetWind(D3DXVECTOR3 rot, float air);
+	void SetWind(D3DXVECTOR3 rot, D3DXVECTOR3 air);		//風の設定
+	void SetRot(D3DXVECTOR3 rot);						//向きの設定
 
-	static CWind *Create(const D3DXVECTOR3 pos, const D3DXVECTOR3 size);
+	static CWind *Create(const D3DXVECTOR3 pos, const D3DXVECTOR3 rot, const D3DXVECTOR3 size);	//生成
 
 private:
 	D3DXVECTOR3 m_pos;		//位置
 	D3DXVECTOR3 m_size;		//サイズ
 	D3DXVECTOR3 m_rot;		//向き
 	D3DXVECTOR3 m_move;		//位置
+
+	int m_nFrame;			//フレーム数
 
 };
 
