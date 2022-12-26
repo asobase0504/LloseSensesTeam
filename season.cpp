@@ -148,6 +148,10 @@ void CSeason::SetTime(int nTime)
 		{
 			m_season = SEASON_WINTER;
 		}
+		else if (m_nTime2 == 5)
+		{
+			m_nTime2 = 1;
+		}
 	}
 
 	// テクスチャ座標の設定
