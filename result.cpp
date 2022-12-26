@@ -57,7 +57,6 @@ HRESULT CResult::Init()
 //--------------------------------------------------
 void CResult::Uninit()
 {
-	CManager::GetSound()->Stop();
 	CObject::DeletedObj();
 }
 
