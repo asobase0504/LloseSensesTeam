@@ -45,6 +45,7 @@ public: /* 定義 */
 		TEXTURE_BG3,				// ポーズ
 		TEXTURE_TUTORIAL_KEY,		// 操作説明
 		TEXTURE_TUTORIAL_TUTORIAL,	// ルール説明
+		TEXTURE_SCORE_TEXT,			//	スコア
 		TEXTURE_MAX,
 		TEXTURE_NONE,				// 使用しない
 	};
