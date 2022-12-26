@@ -20,6 +20,8 @@
 #include "particle.h"
 #include "utility.h"
 
+#define SUKINASUUZI (3)
+
 //--------------------------------------------------
 // コンストラクタ
 //--------------------------------------------------
@@ -45,7 +47,7 @@ HRESULT CTitle::Init()
 	m_pBG = new CBG;
 	m_pBG->Init();
 
-	randam = 3;
+	randam = SUKINASUUZI;
 	m_pBG->SetTexture(randam);
 
 	// タイトル

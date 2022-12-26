@@ -23,7 +23,7 @@ const char* CTexture::s_FileName[] =
 	"data/TEXTURE/thumbnail.png",	// 地面
 	"data/TEXTURE/shadow000.jpg",	// 影
 	"data/TEXTURE/snow.png",		// TITLE_BG
-	"data/TEXTURE/TITLE1.png",		// TITLE
+	"data/TEXTURE/TITLE3.png",		// TITLE
 	"data/TEXTURE/TUTORIAL.png",	// TUTORIAL
 	"data/TEXTURE/START.png",		// START
 	"data/TEXTURE/RESULT.png",		// RESULT
@@ -44,9 +44,9 @@ const char* CTexture::s_FileName[] =
 	"data/TEXTURE/bg2.png",		// 木
 	"data/TEXTURE/bg3.png",		// 木
 	"data/TEXTURE/bg4.png",		// 木
-	"data/TEXTURE/score_text.png",		// 木
 	"data/TEXTURE/tutorial_key.png",		// チュートリアルキー
 	"data/TEXTURE/tutorial_tutorial.png",		// チュートリアルキー
+	"data/TEXTURE/score_text.png",		// 木
 };
 
 static_assert(sizeof(CTexture::s_FileName) / sizeof(CTexture::s_FileName[0]) == CTexture::TEXTURE_MAX, "aho");
