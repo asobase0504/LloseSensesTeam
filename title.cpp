@@ -79,8 +79,6 @@ HRESULT CTitle::Init()
 //--------------------------------------------------
 void CTitle::Uninit()
 {
-	CManager::GetSound()->Stop();
-
 	CObject::DeletedObj();
 }
 
