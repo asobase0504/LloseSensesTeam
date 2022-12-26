@@ -73,7 +73,7 @@ HRESULT CGame::Init()
 
 	m_pPause = CPause::Create();
 
-	m_pPlayer = CPlayer::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_WIDTH * 0.5f, 0.0f), D3DXVECTOR3(20.0f, 60.0f, 0.0f));
+	m_pPlayer = CPlayer::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_WIDTH * 0.5f, 0.0f), D3DXVECTOR3(60.0f, 60.0f, 0.0f));
 
 	return S_OK;
 }
