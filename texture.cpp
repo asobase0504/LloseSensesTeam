@@ -35,6 +35,14 @@ const char* CTexture::s_FileName[] =
 	"data/TEXTURE/backTitle.png",	// タイトルへ
 	"data/TEXTURE/close.png",		// 閉じる
 	"data/TEXTURE/pause.png",		// ポーズ
+	"data/TEXTURE/tree3.png",		// 木
+	"data/TEXTURE/tree1.png",		// 木
+	"data/TEXTURE/tree2.png",		// 木
+	"data/TEXTURE/tree4.png",		// 木
+	"data/TEXTURE/bg1.png",		// 木
+	"data/TEXTURE/bg2.png",		// 木
+	"data/TEXTURE/bg3.png",		// 木
+	"data/TEXTURE/bg4.png",		// 木
 };
 
 static_assert(sizeof(CTexture::s_FileName) / sizeof(CTexture::s_FileName[0]) == CTexture::TEXTURE_MAX, "aho");

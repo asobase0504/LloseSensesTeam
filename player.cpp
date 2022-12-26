@@ -19,7 +19,7 @@
 //**************************************************
 // マクロ定義
 //**************************************************
-#define ROT_MOVE		(0.05f)
+#define ROT_MOVE		(0.15f)
 #define ROT_DEATH		(1.57f)
 #define ROT_GRAVITY		(0.005f)
 
@@ -101,11 +101,11 @@ void CPlayer::Control_()
 
 	m_rotMove += wind;
 
-	if (pInputKeyoard->GetPress(DIK_A) || pInputJoyPad->GetJoypadPress(pInputJoyPad->JOYKEY_LEFT_SHOULDER, 0))
+	if (pInputKeyoard->GetTrigger(DIK_A) || pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_LEFT_SHOULDER, 0))
 	{// 左
 		m_rotMove += -ROT_MOVE;
 	}
-	if (pInputKeyoard->GetPress(DIK_D) || pInputJoyPad->GetJoypadPress(pInputJoyPad->JOYKEY_RIGHT_SHOULDER, 0))
+	if (pInputKeyoard->GetTrigger(DIK_D) || pInputJoyPad->GetJoypadTrigger(pInputJoyPad->JOYKEY_RIGHT_SHOULDER, 0))
 	{// 右
 		m_rotMove += ROT_MOVE;
 	}
