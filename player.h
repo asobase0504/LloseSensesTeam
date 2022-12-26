@@ -32,6 +32,7 @@ private:
 private:
 	float m_rotMove;	// í‚É‘«‚³‚ê‚éŠp“x
 	bool m_bDeath;
+	int m_nTime;
 };
 
 #endif	// _PLAYER_H_

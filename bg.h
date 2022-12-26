@@ -32,9 +32,11 @@ public:
 
 	void SetTexture(int i);
 private:
-	CObject2D* m_bg;
-	CObject2D* m_tree[2];
+	CObject2D* m_bg[4];
+	CObject2D* m_tree[4][8];
 
+	int select;
+	float alpha;
 };
 
 #endif	// _OBJECT2D_H_

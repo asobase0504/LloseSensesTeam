@@ -18,12 +18,20 @@
 #include "fade.h"
 #include "ranking.h"
 
+#include "bg.h"
+#include "pause.h"
+#include "season.h"
+#include "player.h"
+#include "wind.h"
+
 //**************************************************
 // 静的メンバ変数
 //**************************************************
-CScore *CTutorial::m_pScore = nullptr;
-CPlayer3D *CTutorial::m_pPlayer3D = nullptr;
-CLockOnUIManager *CTutorial::m_pLockOnUIManager = nullptr;
+CPlayer *CTutorial::m_pPlayer = nullptr;
+CPause *CTutorial::m_pPause = nullptr;
+CWind *CTutorial::m_pWind = nullptr;
+CSeason *CTutorial::m_pSeason = nullptr;
+CBG *CTutorial::m_pBG = nullptr;
 
 //--------------------------------------------------
 // コンストラクタ
@@ -44,7 +52,19 @@ CTutorial::~CTutorial()
 //--------------------------------------------------
 HRESULT CTutorial::Init()
 {
+	CManager::GetSound()->Play(CSound::LABEL_BGM_GAME);
 	m_time = 0;
+
+	m_pBG = new CBG;
+	m_pBG->Init();
+
+	m_pPause = CPause::Create();
+
+	m_pSeason = CSeason::Create(D3DXVECTOR3(620.0f, 50.0f, 0.0f), D3DXVECTOR3(30.0f, 60.0f, 0.0f));
+	m_pSeason->Start();
+
+	m_pPlayer = CPlayer::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.5f, CManager::SCREEN_HEIGHT - (320.0f * 0.15f), 0.0f), D3DXVECTOR3(820.0f, 820.0f, 0.0f));
+	m_pWind = CWind::Create(D3DXVECTOR3(CManager::SCREEN_WIDTH * 0.8f, CManager::SCREEN_WIDTH * 0.3f, 0.0f), D3DXVECTOR3(300.0f, 300.0f, 0.0f));
 
 	return S_OK;
 }
@@ -55,9 +75,7 @@ HRESULT CTutorial::Init()
 void CTutorial::Uninit()
 {
 	// リリースはリリースオールでやってある
-	m_pScore = nullptr;
-	m_pPlayer3D = nullptr;
-	m_pLockOnUIManager = nullptr;
+	//m_pScore = nullptr;
 
 	CObject::DeletedObj();
 }

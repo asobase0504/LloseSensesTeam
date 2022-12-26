@@ -219,7 +219,7 @@ CObject2D *CObject2D::Create(D3DXVECTOR3 pos, D3DXVECTOR3 size, int nPriority)
 void CObject2D::SetCol(const D3DXCOLOR &col)
 {
 	VERTEX_2D *pVtx;			// 頂点情報へのポインタ
-
+	m_col = col;
 	//if (m_pVtxBuff != nullptr)
 	{
 		// 頂点バッファをロックし、頂点情報へのポインタを取得

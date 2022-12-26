@@ -77,8 +77,6 @@ HRESULT CRanking::Init()
 //--------------------------------------------------
 void CRanking::Uninit()
 {
-	CManager::GetSound()->Stop();
-
 	CObject::DeletedObj();
 }
 
