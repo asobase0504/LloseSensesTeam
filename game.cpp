@@ -104,9 +104,6 @@ void CGame::Uninit()
 	//CManager::GetSound()->Stop();
 
 	// リリースはリリースオールでやってある
-	m_pTimer = nullptr;
-	m_pScore = nullptr;
-	m_pPlayer = nullptr;
 
 	CObject::DeletedObj();
 }
@@ -118,25 +115,17 @@ void CGame::Update()
 {
 	m_time++;
 
-	CInputKeyboard *pInputKeyoard = CManager::GetInputKeyboard();
-
-	if (m_pPlayer->GetDeath())
-	{
-		// 遷移
-		CFade::GetInstance()->SetFade(CManager::MODE_RESULT);
-		return;
-	}
-
-	if (m_time % 10 == 0)
+	if (m_time % 1 == 0)
 	{
 		D3DXVECTOR3 rot = m_pPlayer->GetRot();
 		int score = 0;
-		score += (int)(100.0f * (1.0f - fabs(rot.z)));
+		score += (int)(10.0f * (1.0f - fabs(rot.z)));
+
 		m_pScore->AddScore(score);
 	}
 
 	// 風のパーティクル
-	if(m_time % 1 == 0)
+	if(m_time % 2 == 0)
 	{
 		CParticle* particle = CParticle::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(30.0f, 30.0f, 0.0f), 50);
 		switch (m_pWind->GetState())
@@ -165,11 +154,7 @@ void CGame::Update()
 		switch (m_pSeason->GetSeason())
 		{
 		case CSeason::SEASON_SPRING:
-		{
-			float size = FloatRandam(60.0f, 20.0f);
-			particle->SetSize(D3DXVECTOR3(size, size, 0.0f));
-			particle->SetTexture(CTexture::TEXTURE_SNOW);
-		}
+			particle->SetTexture(CTexture::TEXTURE_HANABIRA);
 			break;
 		case CSeason::SEASON_SUMMER:
 			particle->SetTexture(CTexture::TEXTURE_HANABIRA);
@@ -188,8 +173,12 @@ void CGame::Update()
 			}
 			break;
 		case CSeason::SEASON_WINTER:
+		{
+			float size = FloatRandam(60.0f, 20.0f);
+			particle->SetSize(D3DXVECTOR3(size, size, 0.0f));
 			particle->SetTexture(CTexture::TEXTURE_SNOW);
-			break;
+		}
+		break;
 		default:
 			break;
 		}
