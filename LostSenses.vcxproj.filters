@@ -138,6 +138,9 @@
     <ClCompile Include="season.cpp">
       <Filter>ソース ファイル\system</Filter>
     </ClCompile>
+    <ClCompile Include="count.cpp">
+      <Filter>ソース ファイル\system</Filter>
+    </ClCompile>
     <ClCompile Include="bg.cpp">
       <Filter>ソース ファイル\object</Filter>
     </ClCompile>
@@ -246,6 +249,9 @@
       <Filter>ソース ファイル\particle</Filter>
     </ClInclude>
     <ClInclude Include="season.h">
+      <Filter>ソース ファイル\system</Filter>
+    </ClInclude>
+    <ClInclude Include="count.h">
       <Filter>ソース ファイル\system</Filter>
     </ClInclude>
     <ClInclude Include="bg.h">
