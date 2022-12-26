@@ -21,6 +21,7 @@ class CGimmick;
 class CGoal;
 class CTime;
 class CPlayer;
+class CWind;
 
 //**************************************************
 // ƒNƒ‰ƒX
@@ -58,6 +59,7 @@ private:
 	static CGimmick *m_pGimmick;
 	static CGoal *m_pGoal;
 	static CTime *m_pTimer;
+	static CWind *m_pWind;
 };
 
 #endif	// _GAME_H_
